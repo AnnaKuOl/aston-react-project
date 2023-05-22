@@ -1,0 +1,12 @@
+.header {
+  background-color: #512284;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: aliceblue;
+}
+.link {
+  color: antiquewhite;
+}
