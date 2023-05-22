@@ -8,10 +8,7 @@ export function Header() {
         <NavLink to="/">
           <img src={logo} alt="Логотип" />
         </NavLink>
-        <div>
-          <NavLink to="/film" className={s.link}>
-            Film
-          </NavLink>
+        <nav className={s.navigation}>
           <NavLink to="/sigin" className={s.link}>
             Войти
           </NavLink>
@@ -21,7 +18,7 @@ export function Header() {
           <NavLink to="/favorite" className={s.link}>
             Избранное
           </NavLink>
-        </div>
+        </nav>
       </div>
     </header>
   );

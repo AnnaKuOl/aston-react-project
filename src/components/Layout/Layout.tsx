@@ -6,11 +6,9 @@ export const Layout = () => {
     <>
       <Header />
 
-      <main>
+      <main className="container">
         <Outlet />
       </main>
-
-      <footer>2023</footer>
     </>
   );
 };
