@@ -1,0 +1,21 @@
+.header {
+  background-color: #512284;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: aliceblue;
+}
+.link {
+  color: antiquewhite;
+  text-decoration: none;
+}
+.navigation {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 700;
+}
