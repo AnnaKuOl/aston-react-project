@@ -1,5 +1,5 @@
-import { Card } from '../components/Card/Card';
+import { CardList } from '../components/CardList/CardList';
 
 export function CatalogPage() {
-  return <Card />;
+  return <CardList />;
 }
