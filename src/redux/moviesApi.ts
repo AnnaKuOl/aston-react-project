@@ -7,6 +7,9 @@ export const moviesApi = createApi({
     getMovies: build.query({
       query: () => 'en/API/MostPopularMovies/k_vx2f1tac',
     }),
+    getMovie: build.query({
+      query: (id) => `en/API/Title/k_vx2f1tac/${id}`,
+    }),
   }),
 });
-export const { useGetMoviesQuery } = moviesApi;
+export const { useGetMoviesQuery, useGetMovieQuery } = moviesApi;

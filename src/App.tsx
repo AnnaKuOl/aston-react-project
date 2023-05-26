@@ -13,7 +13,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<CatalogPage />} />
-        <Route path="film/:id" element={<SinglePage />} />
+        <Route path="movie/:id" element={<SinglePage />} />
         <Route path="sigin" element={<LoginPage />} />
         <Route path="registration" element={<RegistrationPage />} />
         <Route path="favorite" element={<FavoritePage />} />

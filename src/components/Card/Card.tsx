@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import React from 'react';
 
 import s from './index.module.css';
 interface ClientData {
@@ -20,7 +19,7 @@ export function Card({ image, title, year, crew, rating, id }: ClientData) {
       <p>Rate: {rating}</p>
       <p>Rate: {crew}</p>
 
-      <Link to={`film/${id}`}>Подробнее</Link>
+      <Link to={`movie/${id}`}>Подробнее</Link>
       <button>Добавить в избранное</button>
     </div>
   );
