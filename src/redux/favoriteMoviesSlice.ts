@@ -1,17 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const favoriteMoviesSlice = createSlice({
-    name: 'favoriteMovies',
-    initialState: {
-        favoriteMovies: [],
-    },
-    reducers: {
-        addFavoriteMovie(state, action){
-            state.favoriteMovies.push({...action.payload, isFavotite: true})
-        },
-        eremoveFavoriteMovie(state, action){},
+import { FullMovieDataClient } from '../types/types';
 
-    }
+export interface FavoriteMovies extends FullMovieDataClient{
+        isFavorite: boolean;      
+}
+interface FavoriteMoviesState {
+    favoriteMovies: FavoriteMovies[];
+    isLoading:boolean;
+    error: string
+
+}
+const initialState: FavoriteMoviesState ={
+  favoriteMovies: [],
+  isLoading: false,
+  error: '',
+};
+
+const favoriteMoviesSlice = createSlice({
+  name: 'favoriteMovies',
+  initialState,
+  reducers: {
+    addFavoriteMovie(state, action){
+      state.favoriteMovies.push({...action.payload, isFavotite: true});
+    },
+    removeFavoriteMovie(state, action){},
+
+  }
 });
 export const { addFavoriteMovie} = favoriteMoviesSlice.actions;
 export default favoriteMoviesSlice.reducer;
