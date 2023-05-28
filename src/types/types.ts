@@ -1,3 +1,4 @@
+import { FavoriteMovies } from '../redux';
 
 interface Actor {
     id: string; 
@@ -38,3 +39,5 @@ export interface FullMovieDataClient {
   }
   
 export type ShortMovieDataClient = Pick<FullMovieDataClient, 'id' | 'rating' | 'image' | 'title' | 'year'>;
+
+export type Movie = ShortMovieDataClient | FavoriteMovies;

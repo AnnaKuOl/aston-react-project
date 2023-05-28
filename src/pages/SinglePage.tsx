@@ -2,21 +2,20 @@ import { useParams } from 'react-router-dom';
 
 import { addFavoriteMovie, useGetMovieQuery } from '../redux';
 import { Button } from '../components/Button/Button';
-import { transformFullDataFromServer } from '../utils/functions';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 
 export function SinglePage() {
-  const { id } = useParams();
+  const { id = '' } = useParams();
 
   const dispatch = useAppDispatch();
-  const { data } = useGetMovieQuery(id);
+  const { data: movie, isLoading } = useGetMovieQuery(id);
 
   const addFavoritesMovie = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(addFavoriteMovie(data));
+    dispatch(addFavoriteMovie(movie));
   };
-  let movie;
-  if (data) movie = transformFullDataFromServer(data);
+  if (isLoading) return <h1>Loading...</h1>;
+
   return (
     <div>
       <Button onClick={addFavoritesMovie}>Добавить в избранное</Button>
@@ -36,8 +35,8 @@ export function SinglePage() {
             <span key={index}>{item}</span>
           ))}
         </p>
-        <p>{data?.plot}</p>
-        <p>{data?.imDbRating}</p>
+        <p>{movie?.plot}</p>
+        <p>{movie?.rating}</p>
       </div>
     </div>
   );

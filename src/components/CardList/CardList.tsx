@@ -1,21 +1,18 @@
 import cn from 'classnames';
 
 import { Card } from '../../components';
-
-import { ShortMovieDataClient } from '../../types/types';
-
-import { FavoriteMovies } from '../../redux';
+import { Movie } from '../../types/types';
 
 import s from './index.module.css';
 
 interface Props {
-  movies: ShortMovieDataClient[] | FavoriteMovies[];
+  movies: Movie[];
 }
 
 export function CardList({ movies }: Props) {
   return (
     <div className={cn(s.cards, 'container')}>
-      {movies?.map((movie) => (
+      {movies.map((movie) => (
         <Card key={movie.id} {...movie} />
       ))}
     </div>
