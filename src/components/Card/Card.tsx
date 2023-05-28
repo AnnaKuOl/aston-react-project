@@ -1,25 +1,18 @@
 import { Link } from 'react-router-dom';
+
+import { ShortMovieDataClient } from '../../types/types';
+
 import s from './index.module.css';
 
-export function Card() {
-  const film = {
-    poster:
-      'https://m.media-amazon.com/images/M/MV5BYzI5MjQ2NzEtN2JmOC00MjE2LWI2NjItYTNjNTJjMjBkOWZkXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg',
-    title: 'Tiger King',
-    type: 'series',
-    year: '2020–2021',
-    id: 'tt11823076',
-  };
-
+export function Card({ image, title, year, rating, id }: ShortMovieDataClient) {
   return (
     <div className={s.card}>
-      <img className={s.img} src={film.poster} alt={film.title} />
-      <h2>{film.title}</h2>
-      <p>{film.year}</p>
-      <p>{film.type}</p>
+      <img className={s.img} src={image} alt={title} />
+      <h2>{title}</h2>
+      <p>{year}</p>
+      <p>Rate: {rating}</p>
 
-      <Link to={`film/${film.id}`}>Подробнее</Link>
-      <button>Добавить в избранное</button>
+      <Link to={`movie/${id}`}>Подробнее</Link>
     </div>
   );
 }
