@@ -1,15 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { FullMovieDataClient, FullMovieDataServer, MovieSearch, ServerResponse, ShortMovieDataClient, ShortMovieDataServer } from '../types/types';
+import { API_KEY } from '../utils/const';
 
 
 
 export const moviesApi = createApi({
   reducerPath: 'moviesApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://imdb-api.com/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://imdb-api.com/en/API/' }),
   endpoints: (build) => ({
     getMovies: build.query<ShortMovieDataClient[], string>({
-      query: () => 'en/API/MostPopularMovies/k_vx2f1tac',
+      query: () => `MostPopularMovies/${API_KEY}`,
       transformResponse: (response: { items: ShortMovieDataServer[] } ) =>
         response.items.slice(0, 6).map(item=>({
           id: item.id,
@@ -21,7 +22,7 @@ export const moviesApi = createApi({
     }),
 
     getMovie: build.query<FullMovieDataClient, string>({
-      query: (id:string ) => `en/API/Title/k_vx2f1tac/${id}`,
+      query: (id:string ) => `Title/${API_KEY}/${id}`,
       transformResponse: (response: FullMovieDataServer) => ({
         actors: response.actorList.map((actor) => actor.name),
         companies: response.companies,
@@ -38,13 +39,13 @@ export const moviesApi = createApi({
       }),
     }),
     searchMovies: build.query<MovieSearch[], string>({
-      query: (query:string) => `/en/API/SearchMovie/k_vx2f1tac/${query}`,
+      query: (query:string) => `SearchMovie/${API_KEY}/${query}`,
       transformResponse: (response: ServerResponse) => response.results
 
 
     }),
   }),
 });
-export const { useGetMoviesQuery, useGetMovieQuery, useSearchMoviesQuery } = moviesApi;
+export const { useGetMoviesQuery, useLazyGetMoviesQuery, useGetMovieQuery, useSearchMoviesQuery } = moviesApi;
 
 
