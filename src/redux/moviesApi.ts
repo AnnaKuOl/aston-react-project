@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { FullMovieDataClient, FullMovieDataServer, ShortMovieDataClient, ShortMovieDataServer } from '../types/types';
+import { FullMovieDataClient, FullMovieDataServer, MovieSearch, ServerResponse, ShortMovieDataClient, ShortMovieDataServer } from '../types/types';
 
 
 
@@ -11,7 +11,7 @@ export const moviesApi = createApi({
     getMovies: build.query<ShortMovieDataClient[], string>({
       query: () => 'en/API/MostPopularMovies/k_vx2f1tac',
       transformResponse: (response: { items: ShortMovieDataServer[] } ) =>
-        response.items.map(item=>({
+        response.items.slice(0, 6).map(item=>({
           id: item.id,
           image: item.image,
           title: item.title,
@@ -37,8 +37,14 @@ export const moviesApi = createApi({
         year: response.year,
       }),
     }),
+    searchMovies: build.query<MovieSearch[], string>({
+      query: (query:string) => `/en/API/SearchMovie/k_vx2f1tac/${query}`,
+      transformResponse: (response: ServerResponse) => response.results
+
+
+    }),
   }),
 });
-export const { useGetMoviesQuery, useGetMovieQuery } = moviesApi;
+export const { useGetMoviesQuery, useGetMovieQuery, useSearchMoviesQuery } = moviesApi;
 
 
