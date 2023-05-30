@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 
 import { addFavoriteMovie, useGetMovieQuery } from '../redux';
-import { Button } from '../components/Button/Button';
+
 import { useAppDispatch } from '../hooks/useAppDispatch';
+import { Button } from '../components';
 
 export function SinglePage() {
   const { id = '' } = useParams();

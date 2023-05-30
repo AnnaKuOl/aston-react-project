@@ -8,3 +8,4 @@ export const VALIDATE_CONFIG = {
   passwordMessage:
     'Пароль должен содержать минимум восемь символов, одну букву латинского алфавита и одну цифру',
 };
+export const LS_USERS_KEY= 'users';

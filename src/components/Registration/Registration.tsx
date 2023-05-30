@@ -1,27 +1,39 @@
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import {
   EMAIL_REGEXP,
   PASSWORD_REGEXP,
   VALIDATE_CONFIG,
 } from '../../utils/const';
-import { Form } from '../../components';
+import { Button, Form } from '..';
 
 export const Registration = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: 'onBlur' });
+  } = useForm<User>({ mode: 'onBlur' });
   const navigate = useNavigate();
-
-  const sendRegisterApi = (data) => {
-    console.log(data);
-    navigate('/');
+  type User = {
+    password: string;
+    email: string;
   };
-  const handleClickLoginButton = (e) => {
+  const sendRegisterApi: SubmitHandler<User> = (data) => {
+    console.log(data);
+    const users = localStorage.getItem('users');
+    if (users) {
+      const updateUsers = [...JSON.parse(users)];
+      updateUsers.find((user) => user.email !== data.email)
+        ? localStorage.setItem('users', JSON.stringify([...updateUsers, data]))
+        : navigate('/sigin');
+    } else {
+      localStorage.setItem('users', JSON.stringify([data]));
+    }
+    navigate('/sigin');
+  };
+  const handleClickLoginButton = (e: React.MouseEvent) => {
     e.preventDefault();
     navigate('/sigin');
   };
@@ -59,12 +71,10 @@ export const Registration = () => {
         <p className="errorMessage">{errors?.password?.message}</p>
       )}
 
-      <p className="infoText">
-        Регистрируясь на сайте, вы соглашаетесь с нашими Правилами и Политикой
-        конфиденциальности и соглашаетесь на информационную рассылку.
-      </p>
-      <button>Зарегистрироваться</button>
-      <button onClick={handleClickLoginButton}>Войти</button>
+      <Button onClick={handleSubmit(sendRegisterApi)}>
+        Зарегистрироваться
+      </Button>
+      <Button onClick={handleClickLoginButton}>Войти</Button>
     </Form>
   );
 };
