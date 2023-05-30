@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import {
   EMAIL_REGEXP,
+  LOGIN_REGEXP,
   PASSWORD_REGEXP,
   VALIDATE_CONFIG,
 } from '../../utils/const';
@@ -19,9 +20,9 @@ export const Registration = () => {
   type User = {
     password: string;
     email: string;
+    login: string;
   };
-  const sendRegisterApi: SubmitHandler<User> = (data) => {
-    console.log(data);
+  const sendRegisterLS: SubmitHandler<User> = (data) => {
     const users = localStorage.getItem('users');
     if (users) {
       const updateUsers = [...JSON.parse(users)];
@@ -57,9 +58,23 @@ export const Registration = () => {
       message: VALIDATE_CONFIG.passwordMessage,
     },
   });
+  const loginRegister = register('login', {
+    required: {
+      value: true,
+      message: VALIDATE_CONFIG.requiredMessage,
+    },
+    pattern: {
+      value: LOGIN_REGEXP,
+      message: VALIDATE_CONFIG.loginMessage,
+    },
+  });
 
   return (
-    <Form title="Регистрация" handleFormSubmit={handleSubmit(sendRegisterApi)}>
+    <Form title="Регистрация" handleFormSubmit={handleSubmit(sendRegisterLS)}>
+      <input {...loginRegister} id="login" type="text" placeholder="login" />
+      {errors?.login && (
+        <p className="errorMessage">{errors?.login?.message}</p>
+      )}
       <input {...emailRegister} id="email" type="text" placeholder="email" />
       {errors?.email && (
         <p className="errorMessage">{errors?.email?.message}</p>
@@ -71,9 +86,7 @@ export const Registration = () => {
         <p className="errorMessage">{errors?.password?.message}</p>
       )}
 
-      <Button onClick={handleSubmit(sendRegisterApi)}>
-        Зарегистрироваться
-      </Button>
+      <Button onClick={handleSubmit(sendRegisterLS)}>Зарегистрироваться</Button>
       <Button onClick={handleClickLoginButton}>Войти</Button>
     </Form>
   );

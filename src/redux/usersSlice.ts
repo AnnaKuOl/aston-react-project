@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 interface User{
     login: string;
     email?: string;
-    id: string;
     password: string;
     favoriteMovies: Array<string>;
     history: Array<string>;
@@ -20,17 +19,15 @@ const usersSlice = createSlice({
         {
           login: action.payload.login,
           email: action.payload.email,
-          id: action.payload.id,
           password: action.payload.password,
           favoriteMovies: action.payload.favoriteMovies,
           history: action.payload.history,
 
         }
-      );
-            
+      );            
     },
     removeUser(state, action) {
-      state.filter(user=> user.id !== action.payload.id);
+      state.filter(user=> user.email !== action.payload.email);
     }  
   }
 });

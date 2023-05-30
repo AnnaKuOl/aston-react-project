@@ -30,9 +30,8 @@ export const Login = () => {
   } = useForm<User>({ mode: 'onBlur' });
   const navigate = useNavigate();
 
-  const sendRegisterApi: SubmitHandler<User> = (data) => {
+  const sendRegisterLS: SubmitHandler<User> = (data) => {
     const usersLS = localStorage.getItem(LS_USERS_KEY);
-    console.log('usersLS: ', usersLS);
 
     if (usersLS) {
       const users = JSON.parse(usersLS || '');
@@ -76,7 +75,7 @@ export const Login = () => {
   });
 
   return (
-    <Form title="Войти" handleFormSubmit={handleSubmit(sendRegisterApi)}>
+    <Form title="Войти" handleFormSubmit={handleSubmit(sendRegisterLS)}>
       <input {...emailRegister} id="email" type="text" placeholder="email" />
       {errors?.email && (
         <p className="errorMessage">{errors?.email?.message}</p>
@@ -92,7 +91,7 @@ export const Login = () => {
         <p className="errorMessage">{errorLogin?.password}</p>
       )}
 
-      <Button onClick={handleSubmit(sendRegisterApi)}>Войти</Button>
+      <Button onClick={handleSubmit(sendRegisterLS)}>Войти</Button>
       <Button onClick={handleClickRegisterButton}>Зарегистрироваться</Button>
     </Form>
   );
