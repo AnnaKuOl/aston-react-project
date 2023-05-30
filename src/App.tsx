@@ -9,12 +9,14 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { RegistrationPage } from './pages/RegistrationPage';
 import { PrivateRoute } from './hoc/PrivateRoute';
 import { HistoryPage } from './pages/HistoryPage';
+import { SearchPage } from './pages/SearchPage';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<CatalogPage />} />
+        <Route path="search" element={<SearchPage />} />
         <Route path="movie/:id" element={<SinglePage />} />
         <Route path="sigin" element={<LoginPage />} />
         <Route path="registration" element={<RegistrationPage />} />

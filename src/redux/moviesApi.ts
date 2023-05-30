@@ -46,6 +46,6 @@ export const moviesApi = createApi({
     }),
   }),
 });
-export const { useGetMoviesQuery, useLazyGetMoviesQuery, useGetMovieQuery, useSearchMoviesQuery } = moviesApi;
+export const { useGetMoviesQuery, useGetMovieQuery, useSearchMoviesQuery } = moviesApi;
 
 

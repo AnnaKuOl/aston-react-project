@@ -19,19 +19,16 @@ const initialState: FavoriteMoviesState ={
   error: '',
 };
 
-const moviesSlice = createSlice({
-  name: 'movies',
+const favoriteMoviesSlice = createSlice({
+  name: 'favoriteMovies',
   initialState,
   reducers: {
     addFavoriteMovie(state, action){
       state.favoriteMovies.push({...action.payload, isFavotite: true});
     },
-    addMovies(state, action){
-      state.movies.push({...action.payload});
-    },
     removeFavoriteMovie(state, action){},
 
   }
 });
-export const { addFavoriteMovie, addMovies} = moviesSlice.actions;
-export default moviesSlice.reducer;
+export const { addFavoriteMovie} = favoriteMoviesSlice.actions;
+export default favoriteMoviesSlice.reducer;

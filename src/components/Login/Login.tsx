@@ -11,17 +11,10 @@ import {
   VALIDATE_CONFIG,
 } from '../../utils/const';
 import { Button, Form } from '../../components';
+import { Errors, User } from '../../types/types';
 
 export const Login = () => {
   const [errorLogin, setErrorLogin] = useState<Errors>({});
-  type Errors = {
-    email?: string;
-    password?: string;
-  };
-  type User = {
-    password: string;
-    email: string;
-  };
 
   const {
     register,
