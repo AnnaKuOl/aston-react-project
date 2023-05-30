@@ -25,7 +25,7 @@ export const Registration = () => {
   const sendRegisterLS: SubmitHandler<User> = (data) => {
     const users = localStorage.getItem('users');
     if (users) {
-      const updateUsers = [...JSON.parse(users)];
+      const updateUsers = JSON.parse(users);
       updateUsers.find((user) => user.email !== data.email)
         ? localStorage.setItem('users', JSON.stringify([...updateUsers, data]))
         : navigate('/sigin');
