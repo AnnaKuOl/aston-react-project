@@ -1,13 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { moviesApi } from './moviesApi';
-import favoriteMoviesReducer from './favoriteMoviesSlice';
+import moviesReducer from './moviesSlice';
+import usersReducer from './usersSlice';
+
 export { moviesApi } from './moviesApi';
 
 export const store = configureStore({
   reducer: {
     [moviesApi.reducerPath]: moviesApi.reducer,
-    favoriteMovies: favoriteMoviesReducer,
+    movies: moviesReducer,
+    users: usersReducer,
   },
   middleware: (getDefaultMiddlware) =>
     getDefaultMiddlware().concat(moviesApi.middleware),

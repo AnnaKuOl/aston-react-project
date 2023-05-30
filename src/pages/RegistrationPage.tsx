@@ -1,3 +1,9 @@
+import { Registration } from '../components/Registration/Registration';
+
 export function RegistrationPage() {
-  return <div>Регистрация</div>;
+  return (
+    <div>
+      <Registration />
+    </div>
+  );
 }

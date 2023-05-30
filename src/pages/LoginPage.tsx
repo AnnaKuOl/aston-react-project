@@ -1,3 +1,5 @@
+import { Login } from '../components';
+
 export function LoginPage() {
-  return <div>Войти</div>;
+  return <Login />;
 }
