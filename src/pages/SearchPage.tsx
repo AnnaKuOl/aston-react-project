@@ -32,12 +32,10 @@ import { useLocation } from 'react-router-dom';
 
 import { useDebounce } from '../hooks/useDebaunce';
 import { SearchInput, SearchResults } from '../components';
-import { useSearchMoviesQuery } from '../redux';
 
 export function SearchPage() {
   const location = useLocation();
 
-  console.log('location: ', location);
   const [search, setSearch] = useState(location.state);
 
   const debaunceValue = useDebounce(search, 1500);

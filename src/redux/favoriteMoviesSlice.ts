@@ -2,8 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { FullMovieDataClient} from '../types/types';
 
+
 export interface FavoriteMovies extends FullMovieDataClient{
-        isFavorite: boolean;      
+        isFavorite: boolean;   
+        user: string   
 }
 interface FavoriteMoviesState {
 
@@ -12,6 +14,8 @@ interface FavoriteMoviesState {
     error: string;
 
 }
+
+
 const initialState: FavoriteMoviesState ={
   favoriteMovies: [],
   isLoading: false,

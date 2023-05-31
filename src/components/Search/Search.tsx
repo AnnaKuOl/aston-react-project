@@ -5,12 +5,10 @@ import { useLocation } from 'react-router-dom';
 import { useSearchMoviesQuery } from '../../redux';
 
 import { useDebounce } from '../../hooks/useDebaunce';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 export function Search() {
   const location = useLocation();
   const [search, setSearch] = useState('');
-  const dispatch = useAppDispatch();
 
   const debaunceValue = useDebounce(search, 500);
 
@@ -24,7 +22,7 @@ export function Search() {
 
   useEffect(() => {
     setSearch('');
-  }, [location, results, dispatch]);
+  }, [location, results]);
 
   return (
     <>

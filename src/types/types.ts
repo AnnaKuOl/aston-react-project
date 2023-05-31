@@ -60,7 +60,9 @@ export type Errors = {
   password?: string;
 };
 export type User = {
-  password: string;
+  login: string;
   email: string;
-  login?: string;
+  password: string;
+  favoriteMovies?: Array<string>;
+  history?: Array<string>;
 };

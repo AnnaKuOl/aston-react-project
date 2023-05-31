@@ -1,9 +1,18 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+
+import { Button } from '../../components';
 
 import logo from './logo.png';
 import s from './index.module.css';
+
 export function Header() {
-  const isAuth = true; //временная реализация до полной реализации авторизации
+  const isAuth = localStorage.getItem('isAuth');
+  const navigate = useNavigate();
+  const logout = (e: React.MouseEvent) => {
+    e.preventDefault();
+    localStorage.removeItem('isAuth');
+    navigate('/');
+  };
   return (
     <header className={s.header}>
       <div className={`${s.wrapper} container`}>
@@ -19,6 +28,7 @@ export function Header() {
               <NavLink to="/history" className={s.link}>
                 История
               </NavLink>
+              <Button onClick={logout}>Выйти</Button>
             </>
           ) : (
             <>

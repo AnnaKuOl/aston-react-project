@@ -6,7 +6,7 @@ import {
   removeFavoriteMovie,
 } from '../../redux';
 import { Button } from '../../components';
-import { FullMovieDataClient, Movie } from '../../types/types';
+import { FullMovieDataClient } from '../../types/types';
 
 type Props = {
   id: string;
@@ -14,11 +14,12 @@ type Props = {
 };
 
 export function FavoriteButton({ id, movie }: Props) {
+  const isAuth = localStorage.getItem('isAuth') ?? '';
+  const dispatch = useAppDispatch();
   const favoriteMovies = useAppSelector(
     (state) => state.favoriteMovies.favoriteMovies
   );
   const isFav = favoriteMovies.find((movie) => movie.id === id)?.isFavorite;
-  const dispatch = useAppDispatch();
 
   const addFavorite = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -28,6 +29,7 @@ export function FavoriteButton({ id, movie }: Props) {
     e.preventDefault();
     dispatch(removeFavoriteMovie(movie));
   };
+  if (!isAuth) return null;
   return (
     <>
       {!isFav && <Button onClick={addFavorite}>Добавить в избранное</Button>}

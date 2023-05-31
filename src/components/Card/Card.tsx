@@ -1,6 +1,6 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { Movie, ShortMovieDataClient } from '../../types/types';
+import { Movie } from '../../types/types';
 
 import { useGetMovieQuery } from '../../redux';
 
@@ -9,7 +9,7 @@ import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
 import s from './index.module.css';
 
 export function Card({ image, title, id }: Movie) {
-  const { data: movie, isLoading, isError } = useGetMovieQuery(id);
+  const { data: movie } = useGetMovieQuery(id);
 
   return (
     <Link to={`movie/${id}`}>

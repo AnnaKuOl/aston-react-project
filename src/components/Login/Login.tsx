@@ -31,9 +31,12 @@ export const Login = () => {
       const user = users?.find((user: User) => user.email === data.email);
 
       if (user) {
-        user.password === data.password
-          ? navigate('/')
-          : setErrorLogin({ password: 'Пароль неверен' });
+        if (user.password === data.password) {
+          localStorage.setItem('isAuth', JSON.stringify(user.email));
+          navigate('/');
+        } else {
+          setErrorLogin({ password: 'Пароль неверен' });
+        }
       } else {
         setErrorLogin({ email: 'Пользователь не найден' });
       }
