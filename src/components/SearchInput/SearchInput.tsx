@@ -3,7 +3,7 @@ type Props = {
   value: string;
   placeholder?: string;
   className?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 };
 
 export const SearchInput = ({ onChange, ...inputProps }: Props) => {

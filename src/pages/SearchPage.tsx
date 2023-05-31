@@ -31,13 +31,14 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { useDebounce } from '../hooks/useDebaunce';
-import { Search, SearchInput } from '../components';
+import { SearchInput, SearchResults } from '../components';
 import { useSearchMoviesQuery } from '../redux';
 
 export function SearchPage() {
   const location = useLocation();
+
   console.log('location: ', location);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(location.state);
 
   const debaunceValue = useDebounce(search, 1500);
 
@@ -49,9 +50,10 @@ export function SearchPage() {
   //     skip: debaunceValue.length < 3,
   //   });
 
-  //   useEffect(() => {
-  //     setSearch('');
-  //   }, [location]);
+  useEffect(() => {
+    location.state = '';
+    // setSearch('');
+  }, [location]);
 
   return (
     <>
@@ -61,7 +63,7 @@ export function SearchPage() {
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search"
       />
-      <Search searchText={debaunceValue} />
+      <SearchResults searchText={debaunceValue} />
     </>
   );
 }

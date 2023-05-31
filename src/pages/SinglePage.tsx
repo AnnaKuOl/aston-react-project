@@ -1,27 +1,19 @@
 import { useParams } from 'react-router-dom';
 
-import { addFavoriteMovie, useGetMovieQuery } from '../redux';
+import { useGetMovieQuery } from '../redux';
 
-import { useAppDispatch } from '../hooks/useAppDispatch';
-import { Button } from '../components';
+import { FavoriteButton } from '../components';
 
 export function SinglePage() {
   const { id = '' } = useParams();
-
-  const dispatch = useAppDispatch();
   const { data: movie, isLoading, isError } = useGetMovieQuery(id);
-
-  const addFavoritesMovie = (e: React.MouseEvent) => {
-    e.preventDefault();
-    dispatch(addFavoriteMovie(movie));
-  };
 
   return (
     <div>
       {isError && <p>Ошибка</p>}
       {isLoading && <h1>Loading...</h1>}
       <div>
-        <Button onClick={addFavoritesMovie}>Добавить в избранное</Button>
+        <FavoriteButton id={id} movie={movie} />
         <div>
           <img src={movie?.image} alt={movie?.title} />
         </div>
