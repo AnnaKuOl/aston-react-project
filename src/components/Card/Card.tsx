@@ -12,7 +12,7 @@ export function Card({ image, title, id }: Movie) {
   const { data: movie } = useGetMovieQuery(id);
 
   return (
-    <Link to={`movie/${id}`}>
+    <Link to={`/movie/${id}`}>
       <div className={s.card}>
         <FavoriteButton id={id} movie={movie} />
         <img className={s.img} src={image} alt={title} />

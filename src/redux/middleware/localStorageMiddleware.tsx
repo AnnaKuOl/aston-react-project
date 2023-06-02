@@ -3,7 +3,7 @@ import { Middleware } from '@reduxjs/toolkit';
 import { LSKey } from '../../utils/functions';
 import { RootState } from '../store';
 
-export const localStorageMiddlewar: Middleware =
+export const localStorageMiddleware: Middleware =
   (state) => (next) => (action) => {
     const store: RootState = state.getState();
     const favorites = store.favoriteMovies.favoriteMovies;
@@ -11,7 +11,7 @@ export const localStorageMiddlewar: Middleware =
     if (action.type === 'favoriteMovies/addFavoriteMovie') {
       localStorage.setItem(
         LSKey('fav'),
-        JSON.stringify([...favorites, action.payload])
+        JSON.stringify([...favorites, { ...action.payload, isFavorite: true }])
       );
     } else if (action.type === 'favoriteMovies/removeFavoriteMovie') {
       localStorage.setItem(
@@ -24,5 +24,5 @@ export const localStorageMiddlewar: Middleware =
     // if(action.type === 'history/addHistory') {
     //     localStorage.setItem(LSKey('hist'), JSON.stringify([...history, action.payload]))
     // }
-    next(action);
+    return next(action);
   };

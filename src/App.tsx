@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { Layout } from './components';
 import { FavoritePage } from './pages/FavoritePage';
@@ -18,8 +18,6 @@ function App() {
         <Route index element={<CatalogPage />} />
         <Route path="search" element={<SearchPage />} />
         <Route path="movie/:id" element={<SinglePage />} />
-        <Route path="search/movie/:id" element={<SinglePage />} />
-        <Route path="favorite/movie/:id" element={<SinglePage />} />
         <Route path="sigin" element={<LoginPage />} />
         <Route path="registration" element={<RegistrationPage />} />
         <Route

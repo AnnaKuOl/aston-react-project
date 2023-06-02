@@ -15,12 +15,15 @@ const usersSlice = createSlice({
           login: action.payload.login,
           email: action.payload.email,
           password: action.payload.password,
+          favoriteMovies: [],
+          history:[],
         }
       );            
     },
     removeUser(state, action) {
       state.filter(user=> user.email !== action.payload.email);
-    }  
+    } 
+
   }
 });
 export const {setUser, removeUser} = usersSlice.actions;

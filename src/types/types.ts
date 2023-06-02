@@ -63,6 +63,6 @@ export type User = {
   login: string;
   email: string;
   password: string;
-  favoriteMovies?: Array<string>;
-  history?: Array<string>;
+  favoriteMovies: FavoriteMovies[];
+  history: Array<string>;
 };
