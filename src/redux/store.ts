@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { moviesApi } from './moviesApi';
 import favoriteMoviesReducer from './favoriteMoviesSlice';
+import historyReducer from './historySlice';
 import usersReducer from './usersSlice';
 import { localStorageMiddleware } from './middleware/localStorageMiddleware';
 
@@ -11,6 +12,7 @@ export const store = configureStore({
   reducer: {
     [moviesApi.reducerPath]: moviesApi.reducer,
     favoriteMovies: favoriteMoviesReducer,
+    history: historyReducer,
     users: usersReducer,
   },
   middleware: (getDefaultMiddlware) =>

@@ -7,7 +7,7 @@ export const localStorageMiddleware: Middleware =
   (state) => (next) => (action) => {
     const store: RootState = state.getState();
     const favorites = store.favoriteMovies.favoriteMovies;
-    // const history = state.getState().history.history
+    const history: string[] = state.getState().history.history;
     if (action.type === 'favoriteMovies/addFavoriteMovie') {
       localStorage.setItem(
         LSKey('fav'),
@@ -21,8 +21,20 @@ export const localStorageMiddleware: Middleware =
         )
       );
     }
-    // if(action.type === 'history/addHistory') {
-    //     localStorage.setItem(LSKey('hist'), JSON.stringify([...history, action.payload]))
-    // }
+    if (action.type === 'history/addHistory') {
+      if (history.includes(action.payload)) {
+        const updateHistory = history?.filter(
+          (query) => query !== action.payload
+        );
+        updateHistory?.push(action.payload);
+        localStorage.setItem(LSKey('hist'), JSON.stringify(updateHistory));
+      } else {
+        localStorage.setItem(
+          LSKey('hist'),
+          JSON.stringify([...history, action.payload])
+        );
+      }
+    }
+
     return next(action);
   };

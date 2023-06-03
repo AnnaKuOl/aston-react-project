@@ -5,6 +5,8 @@ import { useLocation } from 'react-router-dom';
 import { useSearchMoviesQuery } from '../../redux';
 
 import { useDebounce } from '../../hooks/useDebaunce';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { addHistory } from '../../redux/historySlice';
 
 export function Search() {
   const location = useLocation();
@@ -20,9 +22,12 @@ export function Search() {
     skip: debaunceValue.length < 3,
   });
 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
+    dispatch(addHistory(debaunceValue));
     setSearch('');
-  }, [location, results]);
+  }, [location, results, debaunceValue, dispatch]);
 
   return (
     <>

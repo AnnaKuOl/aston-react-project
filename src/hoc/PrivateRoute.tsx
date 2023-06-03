@@ -5,7 +5,7 @@ type Props = {
 
 export function PrivateRoute({ children }: Props) {
   const location = useLocation();
-  const isAuth = true;
+  const isAuth = localStorage.getItem('isAuth');
 
   if (!isAuth) {
     return <Navigate to="/sigin" state={{ from: location }} />;

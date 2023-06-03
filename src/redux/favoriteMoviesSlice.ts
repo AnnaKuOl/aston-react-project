@@ -13,7 +13,7 @@ interface FavoriteMoviesState {
     error: string;
 }
 
-const userLS = JSON.parse(localStorage.getItem('isAuth') ?? '');
+const userLS = localStorage.getItem('isAuth') ?? '';
 const movies = JSON.parse(localStorage.getItem(`${userLS} fav`) ?? '[]') ;
 
 const initialState: FavoriteMoviesState ={
