@@ -29,7 +29,7 @@
 //   );
 // }
 interface Props {
-  title: any;
+  title: string;
   children: React.ReactNode;
   handleFormSubmit: () => void;
 }

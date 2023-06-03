@@ -1,4 +1,4 @@
 export * from './store';
 export * from './moviesApi';
-export * from './moviesSlice';
+export * from './favoriteMoviesSlice';
 export * from './usersSlice';

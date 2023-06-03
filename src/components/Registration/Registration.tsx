@@ -9,6 +9,7 @@ import {
   VALIDATE_CONFIG,
 } from '../../utils/const';
 import { Button, Form } from '..';
+import { User } from '../../types/types';
 
 export const Registration = () => {
   const {
@@ -17,15 +18,11 @@ export const Registration = () => {
     formState: { errors },
   } = useForm<User>({ mode: 'onBlur' });
   const navigate = useNavigate();
-  type User = {
-    password: string;
-    email: string;
-    login: string;
-  };
+
   const sendRegisterLS: SubmitHandler<User> = (data) => {
     const users = localStorage.getItem('users');
     if (users) {
-      const updateUsers = JSON.parse(users);
+      const updateUsers: User[] = JSON.parse(users);
       updateUsers.find((user) => user.email !== data.email)
         ? localStorage.setItem('users', JSON.stringify([...updateUsers, data]))
         : navigate('/sigin');

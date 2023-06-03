@@ -11,17 +11,10 @@ import {
   VALIDATE_CONFIG,
 } from '../../utils/const';
 import { Button, Form } from '../../components';
+import { Errors, User } from '../../types/types';
 
 export const Login = () => {
   const [errorLogin, setErrorLogin] = useState<Errors>({});
-  type Errors = {
-    email?: string;
-    password?: string;
-  };
-  type User = {
-    password: string;
-    email: string;
-  };
 
   const {
     register,
@@ -38,9 +31,12 @@ export const Login = () => {
       const user = users?.find((user: User) => user.email === data.email);
 
       if (user) {
-        user.password === data.password
-          ? navigate('/')
-          : setErrorLogin({ password: 'Пароль неверен' });
+        if (user.password === data.password) {
+          localStorage.setItem('isAuth', JSON.stringify(user.email));
+          navigate('/');
+        } else {
+          setErrorLogin({ password: 'Пароль неверен' });
+        }
       } else {
         setErrorLogin({ email: 'Пользователь не найден' });
       }

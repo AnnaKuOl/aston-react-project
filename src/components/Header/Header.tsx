@@ -1,9 +1,23 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+
+import { Button } from '../../components';
+
+import { clearHistory } from '../../redux/historySlice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 import logo from './logo.png';
 import s from './index.module.css';
+
 export function Header() {
-  const isAuth = true; //временная реализация до полной реализации авторизации
+  const isAuth = localStorage.getItem('isAuth');
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const logout = (e: React.MouseEvent) => {
+    e.preventDefault();
+    localStorage.removeItem('isAuth');
+    dispatch(clearHistory());
+    navigate('/');
+  };
   return (
     <header className={s.header}>
       <div className={`${s.wrapper} container`}>
@@ -19,6 +33,7 @@ export function Header() {
               <NavLink to="/history" className={s.link}>
                 История
               </NavLink>
+              <Button onClick={logout}>Выйти</Button>
             </>
           ) : (
             <>

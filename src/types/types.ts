@@ -40,7 +40,7 @@ export interface FullMovieDataClient {
   
 export type ShortMovieDataClient = Pick<FullMovieDataClient, 'id' | 'rating' | 'image' | 'title' | 'year'>;
 
-export type Movie = ShortMovieDataClient | FavoriteMovies;
+export type Movie = ShortMovieDataClient | FavoriteMovies | MovieSearch;
 export interface ServerResponse {
   searchType: string
   expression: string
@@ -50,8 +50,19 @@ export interface ServerResponse {
 
 export interface MovieSearch {
   id: string
-  resultType: string
+  resultType?: string
   image: string
   title: string
-  description: string
+  description?: string
 }
+export type Errors = {
+  email?: string;
+  password?: string;
+};
+export type User = {
+  login: string;
+  email: string;
+  password: string;
+  favoriteMovies: FavoriteMovies[];
+  history: Array<string>;
+};
