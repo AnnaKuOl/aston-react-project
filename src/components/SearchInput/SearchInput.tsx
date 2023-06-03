@@ -9,7 +9,7 @@ type Props = {
 export const SearchInput = ({ onChange, ...inputProps }: Props) => {
   return (
     <div>
-      <input className="" {...inputProps} onChange={onChange} autoFocus />
+      <input {...inputProps} onChange={onChange} autoFocus />
     </div>
   );
 };
