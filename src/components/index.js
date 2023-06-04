@@ -8,4 +8,5 @@ export * from './SearchInput/SearchInput';
 export * from './Form/Form';
 export * from './Login/Login';
 export * from './Button/Button';
+export * from './Button/Button';
 export * from './FavoriteButton/FavoriteButton';

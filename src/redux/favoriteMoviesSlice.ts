@@ -15,7 +15,6 @@ interface FavoriteMoviesState {
 }
 
 const movies = JSON.parse(localStorage.getItem(LSKey('fav')) ?? '[]') ;
-console.log('movies: ', movies);
 
 const initialState: FavoriteMoviesState ={
   favoriteMovies: movies ,

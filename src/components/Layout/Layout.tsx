@@ -7,7 +7,6 @@ export const Layout = () => {
   return (
     <>
       <Header />
-
       <main className="container">
         <Suspense fallback={<p>Loading ...</p>}>
           <Outlet />
