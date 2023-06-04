@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { useSearchMoviesQuery } from '../../redux';
 
 import { CardList } from '../CardList/CardList';
@@ -18,3 +20,7 @@ export function SearchResults({ searchText }: Props) {
   if (movies.length >= 1) return <CardList movies={movies} />;
   return null;
 }
+
+SearchResults.propTypes = {
+  searchText: PropTypes.string,
+};

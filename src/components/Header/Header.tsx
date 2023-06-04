@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { Button } from '../../components';
 
 import { clearHistory } from '../../redux/historySlice';
+import { clearFavoriteMovies } from '../../redux';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 
 import logo from './logo.png';
@@ -16,6 +17,7 @@ export function Header() {
     e.preventDefault();
     localStorage.removeItem('isAuth');
     dispatch(clearHistory());
+    dispatch(clearFavoriteMovies());
     navigate('/');
   };
   return (

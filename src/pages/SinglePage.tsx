@@ -4,7 +4,7 @@ import { useGetMovieQuery } from '../redux';
 
 import { FavoriteButton } from '../components';
 
-export function SinglePage() {
+export default function SinglePage() {
   const { id = '' } = useParams();
   const { data: movie, isLoading, isError } = useGetMovieQuery(id);
 

@@ -12,6 +12,10 @@ import {
 } from '../../utils/const';
 import { Button, Form } from '../../components';
 import { Errors, User } from '../../types/types';
+import { LSKey } from '../../utils/functions';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { addHistory } from '../../redux/historySlice';
+import { FavoriteMovies, addFavoriteMovie } from '../../redux';
 
 export const Login = () => {
   const [errorLogin, setErrorLogin] = useState<Errors>({});
@@ -22,7 +26,7 @@ export const Login = () => {
     formState: { errors },
   } = useForm<User>({ mode: 'onBlur' });
   const navigate = useNavigate();
-
+  const dispatch = useAppDispatch();
   const sendRegisterLS: SubmitHandler<User> = (data) => {
     const usersLS = localStorage.getItem(LS_USERS_KEY);
 
@@ -33,6 +37,18 @@ export const Login = () => {
       if (user) {
         if (user.password === data.password) {
           localStorage.setItem('isAuth', JSON.stringify(user.email));
+          const history: string[] = JSON.parse(
+            localStorage.getItem(LSKey('hist')) ?? '[]'
+          );
+          const favoriteMovies: FavoriteMovies[] = JSON.parse(
+            localStorage.getItem(LSKey('fav')) ?? '[]'
+          );
+          favoriteMovies.forEach((movie) => {
+            dispatch(addFavoriteMovie(movie));
+          });
+          history.forEach((query) => {
+            dispatch(addHistory(query));
+          });
           navigate('/');
         } else {
           setErrorLogin({ password: 'Пароль неверен' });

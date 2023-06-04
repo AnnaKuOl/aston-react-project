@@ -1,15 +1,26 @@
 import { Routes, Route } from 'react-router-dom';
+import { lazy } from 'react';
 
 import { Layout } from './components';
-import { FavoritePage } from './pages/FavoritePage';
-import { CatalogPage } from './pages/CatalogPage';
-import { SinglePage } from './pages/SinglePage';
-import { LoginPage } from './pages/LoginPage';
-import { NotFoundPage } from './pages/NotFoundPage';
-import { RegistrationPage } from './pages/RegistrationPage';
 import { PrivateRoute } from './hoc/PrivateRoute';
-import { HistoryPage } from './pages/HistoryPage';
-import { SearchPage } from './pages/SearchPage';
+
+const FavoritePage = lazy(() => import('./pages/FavoritePage'));
+const CatalogPage = lazy(() => import('./pages/CatalogPage'));
+const SinglePage = lazy(() => import('./pages/SinglePage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const RegistrationPage = lazy(() => import('./pages/RegistrationPage'));
+const HistoryPage = lazy(() => import('./pages/HistoryPage'));
+const SearchPage = lazy(() => import('./pages/SearchPage'));
+
+// import { FavoritePage } from './pages/FavoritePage';
+// import { CatalogPage } from './pages/CatalogPage';
+// import { SinglePage } from './pages/SinglePage';
+// import { LoginPage } from './pages/LoginPage';
+// import { NotFoundPage } from './pages/NotFoundPage';
+// import { RegistrationPage } from './pages/RegistrationPage';
+// import { HistoryPage } from './pages/HistoryPage';
+// import { SearchPage } from './pages/SearchPage';
 
 function App() {
   return (

@@ -7,7 +7,7 @@ import { SearchInput, SearchResults } from '../components';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import { addHistory } from '../redux/historySlice';
 
-export function SearchPage() {
+export default function SearchPage() {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState(location.state);
