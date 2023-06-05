@@ -1,14 +1,15 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { Header } from '../../components';
+import { ButtonBack, Header, Spinner } from '../../components';
 
 export const Layout = () => {
   return (
     <>
       <Header />
       <main className="container">
-        <Suspense fallback={<p>Loading ...</p>}>
+        <ButtonBack />
+        <Suspense fallback={<Spinner />}>
           <Outlet />
         </Suspense>
       </main>

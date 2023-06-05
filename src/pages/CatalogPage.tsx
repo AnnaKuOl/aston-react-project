@@ -1,28 +1,48 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, CardList, SearchInput } from '../components';
+import {
+  Button,
+  CardList,
+  ErrorMessage,
+  SearchInput,
+  Spinner,
+} from '../components';
 import { useGetMoviesQuery } from '../redux';
+
+import NotFoundPage from './NotFoundPage';
 
 export default function CatalogPage() {
   const [search, setSearch] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const { data: movies = [], isLoading, isError } = useGetMoviesQuery('');
-
-  if (isLoading) return <h1>Loading...</h1>;
-  if (isError) return <h1>Error</h1>;
+  useEffect(() => {
+    setError('');
+  }, [search]);
+  if (isLoading) return <Spinner />;
+  if (isError) return <NotFoundPage />;
+  const handleSearch = (e: React.MouseEvent | React.FormEvent) => {
+    e.preventDefault();
+    if (search.trim().length) {
+      navigate('/search', { state: search });
+    } else {
+      setError('Поле ввода не должно быть пустым');
+    }
+  };
 
   return (
     <>
-      <SearchInput
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search"
-      />
-      <Button onClick={() => navigate('/search', { state: search })}>
-        Поиск
-      </Button>
+      <form onSubmit={handleSearch}>
+        <SearchInput
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search"
+        />
+      </form>
+      <Button onClick={handleSearch}>Поиск</Button>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       <CardList movies={movies} />;
     </>
   );

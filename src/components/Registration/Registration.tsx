@@ -8,7 +8,7 @@ import {
   PASSWORD_REGEXP,
   VALIDATE_CONFIG,
 } from '../../utils/const';
-import { Button, Form } from '..';
+import { Button, ErrorMessage, Form } from '..';
 import { User } from '../../types/types';
 
 export const Registration = () => {
@@ -69,18 +69,14 @@ export const Registration = () => {
   return (
     <Form title="Регистрация" handleFormSubmit={handleSubmit(sendRegisterLS)}>
       <input {...loginRegister} id="login" type="text" placeholder="login" />
-      {errors?.login && (
-        <p className="errorMessage">{errors?.login?.message}</p>
-      )}
+      {errors?.login && <ErrorMessage>{errors?.login?.message}</ErrorMessage>}
       <input {...emailRegister} id="email" type="text" placeholder="email" />
-      {errors?.email && (
-        <p className="errorMessage">{errors?.email?.message}</p>
-      )}
+      {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
 
       <input {...passwordRegister} type="password" placeholder="Пароль" />
 
       {errors?.password && (
-        <p className="errorMessage">{errors?.password?.message}</p>
+        <ErrorMessage>{errors?.password?.message}</ErrorMessage>
       )}
 
       <Button onClick={handleSubmit(sendRegisterLS)}>Зарегистрироваться</Button>

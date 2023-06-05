@@ -1,12 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { FullMovieDataClient} from '../types/types';
+import { FavoriteMovies} from '../types/types';
 import { LSKey } from '../utils/functions';
 
-export interface FavoriteMovies extends FullMovieDataClient{
-        isFavorite: boolean;   
-  
-}
+
 interface FavoriteMoviesState {
 
     favoriteMovies: FavoriteMovies[];
@@ -34,8 +31,11 @@ const favoriteMoviesSlice = createSlice({
     },
     clearFavoriteMovies(state) {
       state.favoriteMovies= [];
+    },
+    addAllFavoriteMovies(state, action){
+      state.favoriteMovies.push(...action.payload);
     }
   }
 });
-export const { addFavoriteMovie, removeFavoriteMovie, clearFavoriteMovies} = favoriteMoviesSlice.actions;
+export const { addFavoriteMovie, removeFavoriteMovie, clearFavoriteMovies, addAllFavoriteMovies} = favoriteMoviesSlice.actions;
 export default favoriteMoviesSlice.reducer;

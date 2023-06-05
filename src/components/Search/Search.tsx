@@ -3,17 +3,16 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { useSearchMoviesQuery } from '../../redux';
-
 import { useDebounce } from '../../hooks/useDebaunce';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { addHistory } from '../../redux/historySlice';
+import { Spinner, ErrorMessage } from '../../components';
 
 export function Search() {
   const location = useLocation();
   const [search, setSearch] = useState('');
-
-  const debaunceValue = useDebounce(search, 800);
-
+  const dispatch = useAppDispatch();
+  const debaunceValue = useDebounce(search, 1500);
   const {
     data: results,
     isLoading,
@@ -21,8 +20,6 @@ export function Search() {
   } = useSearchMoviesQuery(debaunceValue, {
     skip: debaunceValue.length < 3,
   });
-
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(addHistory(debaunceValue));
@@ -37,8 +34,10 @@ export function Search() {
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search"
       />
-      {isLoading && <p> Loading ...</p>}
-      {isError && <p>{isError}</p>}
+      {isLoading && <Spinner />}
+      {isError && (
+        <ErrorMessage>Something went wrong. Try again later</ErrorMessage>
+      )}
     </>
   );
 }

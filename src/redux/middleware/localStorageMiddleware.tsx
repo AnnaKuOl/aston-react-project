@@ -22,17 +22,19 @@ export const localStorageMiddleware: Middleware =
       );
     }
     if (action.type === 'history/addHistory') {
-      if (history.includes(action.payload)) {
-        const updateHistory = history?.filter(
-          (query) => query !== action.payload
-        );
-        updateHistory?.push(action.payload);
-        localStorage.setItem(LSKey('hist'), JSON.stringify(updateHistory));
-      } else {
-        localStorage.setItem(
-          LSKey('hist'),
-          JSON.stringify([...history, action.payload])
-        );
+      if (localStorage.getItem('isAuth')) {
+        if (history.includes(action.payload)) {
+          const updateHistory = history?.filter(
+            (query) => query !== action.payload
+          );
+          updateHistory?.push(action.payload);
+          localStorage.setItem(LSKey('hist'), JSON.stringify(updateHistory));
+        } else {
+          localStorage.setItem(
+            LSKey('hist'),
+            JSON.stringify([...history, action.payload])
+          );
+        }
       }
     }
 

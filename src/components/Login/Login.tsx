@@ -10,12 +10,12 @@ import {
   PASSWORD_REGEXP,
   VALIDATE_CONFIG,
 } from '../../utils/const';
-import { Button, Form } from '../../components';
-import { Errors, User } from '../../types/types';
+import { Button, ErrorMessage, Form } from '../../components';
+import { Errors, FavoriteMovies, User } from '../../types/types';
 import { LSKey } from '../../utils/functions';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { addHistory } from '../../redux/historySlice';
-import { FavoriteMovies, addFavoriteMovie } from '../../redux';
+import { addAllHistory } from '../../redux/historySlice';
+import { addAllFavoriteMovies } from '../../redux';
 
 export const Login = () => {
   const [errorLogin, setErrorLogin] = useState<Errors>({});
@@ -43,13 +43,9 @@ export const Login = () => {
           const favoriteMovies: FavoriteMovies[] = JSON.parse(
             localStorage.getItem(LSKey('fav')) ?? '[]'
           );
-          favoriteMovies.forEach((movie) => {
-            dispatch(addFavoriteMovie(movie));
-          });
-          history.forEach((query) => {
-            dispatch(addHistory(query));
-          });
-          navigate('/');
+          dispatch(addAllFavoriteMovies(favoriteMovies));
+          dispatch(addAllHistory(history));
+          navigate('/', { replace: true });
         } else {
           setErrorLogin({ password: 'Пароль неверен' });
         }
@@ -89,18 +85,16 @@ export const Login = () => {
   return (
     <Form title="Войти" handleFormSubmit={handleSubmit(sendRegisterLS)}>
       <input {...emailRegister} id="email" type="text" placeholder="email" />
-      {errors?.email && (
-        <p className="errorMessage">{errors?.email?.message}</p>
-      )}
-      {errorLogin?.email && <p className="errorMessage">{errorLogin?.email}</p>}
+      {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
+      {errorLogin?.email && <ErrorMessage>{errorLogin?.email}</ErrorMessage>}
 
       <input {...passwordRegister} type="password" placeholder="Пароль" />
 
       {errors?.password && (
-        <p className="errorMessage">{errors?.password?.message}</p>
+        <ErrorMessage>{errors?.password?.message}</ErrorMessage>
       )}
       {errorLogin?.password && (
-        <p className="errorMessage">{errorLogin?.password}</p>
+        <ErrorMessage>{errorLogin?.password}</ErrorMessage>
       )}
 
       <Button onClick={handleSubmit(sendRegisterLS)}>Войти</Button>

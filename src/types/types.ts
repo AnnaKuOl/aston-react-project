@@ -1,5 +1,3 @@
-import { FavoriteMovies } from '../redux';
-
 interface Actor {
     id: string; 
     image: string; 
@@ -47,7 +45,10 @@ export interface ServerResponse {
   results: MovieSearch[]
   errorMessage: string
 }
+export interface FavoriteMovies extends FullMovieDataClient{
+  isFavorite: boolean;   
 
+}
 export interface MovieSearch {
   id: string
   resultType?: string
