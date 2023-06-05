@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { ButtonBack, Header } from '../../components';
+import { ButtonBack, Header, Spinner } from '../../components';
 
 export const Layout = () => {
   return (
@@ -9,7 +9,7 @@ export const Layout = () => {
       <Header />
       <main className="container">
         <ButtonBack />
-        <Suspense fallback={<p>Loading ...</p>}>
+        <Suspense fallback={<Spinner />}>
           <Outlet />
         </Suspense>
       </main>

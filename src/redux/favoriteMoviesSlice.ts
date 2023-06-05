@@ -1,12 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { FullMovieDataClient} from '../types/types';
+import { FavoriteMovies} from '../types/types';
 import { LSKey } from '../utils/functions';
 
-export interface FavoriteMovies extends FullMovieDataClient{
-        isFavorite: boolean;   
-  
-}
+
 interface FavoriteMoviesState {
 
     favoriteMovies: FavoriteMovies[];

@@ -6,6 +6,7 @@ import { useSearchMoviesQuery } from '../../redux';
 import { useDebounce } from '../../hooks/useDebaunce';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { addHistory } from '../../redux/historySlice';
+import { Spinner, ErrorMessage } from '../../components';
 
 export function Search() {
   const location = useLocation();
@@ -33,8 +34,10 @@ export function Search() {
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search"
       />
-      {isLoading && <p> Loading ...</p>}
-      {isError && <p>{isError}</p>}
+      {isLoading && <Spinner />}
+      {isError && (
+        <ErrorMessage>Something went wrong. Try again later</ErrorMessage>
+      )}
     </>
   );
 }

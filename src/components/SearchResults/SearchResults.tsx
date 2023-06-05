@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import { useSearchMoviesQuery } from '../../redux';
-
+import { Spinner, ErrorMessage } from '../../components';
 import { CardList } from '../CardList/CardList';
 
 type Props = {
@@ -11,10 +11,10 @@ export function SearchResults({ searchText }: Props) {
   const { data, isLoading, isError } = useSearchMoviesQuery(searchText);
   const movies = data ?? [];
   if (isError) {
-    return <h2>Ошибка</h2>;
+    return <ErrorMessage>Something went wrong. Try again later</ErrorMessage>;
   }
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <Spinner />;
   }
   if (movies.length >= 1) return <CardList movies={movies} />;
   return null;

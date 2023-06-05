@@ -1,12 +1,8 @@
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
-import {
-  FavoriteMovies,
-  addFavoriteMovie,
-  removeFavoriteMovie,
-} from '../../redux';
+import { addFavoriteMovie, removeFavoriteMovie } from '../../redux';
 import { Button } from '../../components';
-import { FullMovieDataClient } from '../../types/types';
+import { FavoriteMovies, FullMovieDataClient } from '../../types/types';
 
 type Props = {
   id: string;

@@ -12,3 +12,5 @@ export * from './ButtonBack/ButtonBack';
 export * from './ErrorBoundary/ErrorBoundary';
 export * from './ErrorFallback/ErrorFallback';
 export * from './FavoriteButton/FavoriteButton';
+export * from './Spinner/Spinner';
+export * from './ErrorMessage/ErrorMessage';

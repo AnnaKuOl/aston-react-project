@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { useDebounce } from '../hooks/useDebaunce';
-import { SearchInput, SearchResults } from '../components';
 import { useAppDispatch } from '../hooks/useAppDispatch';
+import { SearchInput, SearchResults } from '../components';
 import { addHistory } from '../redux/historySlice';
 
 export default function SearchPage() {

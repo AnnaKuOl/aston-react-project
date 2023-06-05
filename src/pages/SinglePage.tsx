@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 
 import { useGetMovieQuery } from '../redux';
+import { FavoriteButton, Spinner } from '../components';
 
-import { FavoriteButton } from '../components';
+import NotFoundPage from './NotFoundPage';
 
 export default function SinglePage() {
   const { id = '' } = useParams();
@@ -10,8 +11,8 @@ export default function SinglePage() {
 
   return (
     <div>
-      {isError && <p>Ошибка</p>}
-      {isLoading && <h1>Loading...</h1>}
+      {isError && <NotFoundPage />}
+      {isLoading && <Spinner />}
       <div>
         <FavoriteButton id={id} movie={movie} />
         <div>
