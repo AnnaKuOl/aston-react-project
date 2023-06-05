@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, CardList, SearchInput } from '../components';
 import { useGetMoviesQuery } from '../redux';
 
-export function CatalogPage() {
+export default function CatalogPage() {
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
   const { data: movies = [], isLoading, isError } = useGetMoviesQuery('');
@@ -27,21 +27,3 @@ export function CatalogPage() {
     </>
   );
 }
-
-// import { CardList } from '../components';
-// import { Search } from '../components';
-// import { useGetMoviesQuery } from '../redux';
-
-// export function CatalogPage() {
-//   const { data: movies = [], isLoading, isError } = useGetMoviesQuery('');
-
-//   if (isLoading) return <h1>Loading...</h1>;
-//   if (isError) return <h1>Error</h1>;
-
-//   return (
-//     <>
-//       <Search />
-//       <CardList movies={movies} />;
-//     </>
-//   );
-// }

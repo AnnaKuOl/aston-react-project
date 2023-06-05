@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { FullMovieDataClient} from '../types/types';
+import { LSKey } from '../utils/functions';
 
 export interface FavoriteMovies extends FullMovieDataClient{
         isFavorite: boolean;   
@@ -13,11 +14,10 @@ interface FavoriteMoviesState {
     error: string;
 }
 
-const userLS = localStorage.getItem('isAuth') ?? '';
-const movies = JSON.parse(localStorage.getItem(`${userLS} fav`) ?? '[]') ;
+const movies = JSON.parse(localStorage.getItem(LSKey('fav')) ?? '[]') ;
 
 const initialState: FavoriteMoviesState ={
-  favoriteMovies:  movies ?? [],
+  favoriteMovies: movies ,
   isLoading: false,
   error: '',
 };
@@ -32,7 +32,10 @@ const favoriteMoviesSlice = createSlice({
     removeFavoriteMovie(state, action){
       state.favoriteMovies = state.favoriteMovies.filter(movie=> movie.id!==action.payload.id);
     },
+    clearFavoriteMovies(state) {
+      state.favoriteMovies= [];
+    }
   }
 });
-export const { addFavoriteMovie, removeFavoriteMovie} = favoriteMoviesSlice.actions;
+export const { addFavoriteMovie, removeFavoriteMovie, clearFavoriteMovies} = favoriteMoviesSlice.actions;
 export default favoriteMoviesSlice.reducer;

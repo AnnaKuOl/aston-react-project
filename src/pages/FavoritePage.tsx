@@ -1,7 +1,7 @@
 import { CardList } from '../components';
 import { useAppSelector } from '../hooks/useAppSelector';
 
-export function FavoritePage() {
+export default function FavoritePage() {
   const { favoriteMovies } = useAppSelector((state) => state.favoriteMovies);
 
   if (favoriteMovies.length === 0)

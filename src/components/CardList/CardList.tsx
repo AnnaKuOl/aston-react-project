@@ -1,5 +1,7 @@
 import cn from 'classnames';
 
+import PropTypes from 'prop-types';
+
 import { Card } from '../../components';
 import { Movie } from '../../types/types';
 
@@ -18,3 +20,6 @@ export function CardList({ movies }: Props) {
     </div>
   );
 }
+CardList.propTypes = {
+  movies: PropTypes.array,
+};

@@ -1,6 +1,6 @@
 import { Registration } from '../components/Registration/Registration';
 
-export function RegistrationPage() {
+export default function RegistrationPage() {
   return (
     <div>
       <Registration />

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../hooks/useAppSelector';
 
-export function HistoryPage() {
+export default function HistoryPage() {
   const history = useAppSelector((state) => state.history.history);
 
   return (

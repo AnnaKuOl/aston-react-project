@@ -12,7 +12,7 @@ export function Search() {
   const location = useLocation();
   const [search, setSearch] = useState('');
 
-  const debaunceValue = useDebounce(search, 500);
+  const debaunceValue = useDebounce(search, 800);
 
   const {
     data: results,
