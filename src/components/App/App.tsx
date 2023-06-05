@@ -1,17 +1,17 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 
-import { ErrorBoundary, ErrorFallback, Layout } from './components';
-import { PrivateRoute } from './hoc/PrivateRoute';
+import { ErrorBoundary, ErrorFallback, Layout } from '../../components';
+import { PrivateRoute } from '../../hoc/PrivateRoute';
 
-const FavoritePage = lazy(() => import('./pages/FavoritePage'));
-const CatalogPage = lazy(() => import('./pages/CatalogPage'));
-const SinglePage = lazy(() => import('./pages/SinglePage'));
-const LoginPage = lazy(() => import('./pages/LoginPage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
-const RegistrationPage = lazy(() => import('./pages/RegistrationPage'));
-const HistoryPage = lazy(() => import('./pages/HistoryPage'));
-const SearchPage = lazy(() => import('./pages/SearchPage'));
+const FavoritePage = lazy(() => import('../../pages/FavoritePage'));
+const CatalogPage = lazy(() => import('../../pages/CatalogPage'));
+const SinglePage = lazy(() => import('../../pages/SinglePage'));
+const LoginPage = lazy(() => import('../../pages/LoginPage'));
+const NotFoundPage = lazy(() => import('../../pages/NotFoundPage'));
+const RegistrationPage = lazy(() => import('../../pages/RegistrationPage'));
+const HistoryPage = lazy(() => import('../../pages/HistoryPage'));
+const SearchPage = lazy(() => import('../../pages/SearchPage'));
 
 function App() {
   return (

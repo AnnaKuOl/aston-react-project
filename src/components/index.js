@@ -14,3 +14,4 @@ export * from './ErrorFallback/ErrorFallback';
 export * from './FavoriteButton/FavoriteButton';
 export * from './Spinner/Spinner';
 export * from './ErrorMessage/ErrorMessage';
+export * from './Footer/Footer';

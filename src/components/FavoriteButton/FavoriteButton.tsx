@@ -4,6 +4,8 @@ import { addFavoriteMovie, removeFavoriteMovie } from '../../redux';
 import { Button } from '../../components';
 import { FavoriteMovies, FullMovieDataClient } from '../../types/types';
 
+import s from './index.module.css';
+
 type Props = {
   id: string;
   movie?: FavoriteMovies | FullMovieDataClient;
@@ -27,9 +29,21 @@ export function FavoriteButton({ id, movie }: Props) {
   };
   if (!isAuth) return null;
   return (
-    <>
-      {!isFav && <Button onClick={addFavorite}>Добавить в избранное</Button>}
-      {isFav && <Button onClick={removeFavorite}>Удалить из избранного</Button>}
-    </>
+    <div className={s.btns}>
+      {!isFav && (
+        <Button
+          classTitle="like"
+          onClick={addFavorite}
+          title="Add to favorites"
+        ></Button>
+      )}
+      {isFav && (
+        <Button
+          classTitle="dislike"
+          onClick={removeFavorite}
+          title="Delete fron favorites"
+        ></Button>
+      )}
+    </div>
   );
 }

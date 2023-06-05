@@ -12,7 +12,7 @@ export const moviesApi = createApi({
     getMovies: build.query<ShortMovieDataClient[], string>({
       query: () => `MostPopularMovies/${API_KEY}`,
       transformResponse: (response: { items: ShortMovieDataServer[] } ) =>
-        response.items.slice(0, 6).map(item=>({
+        response.items.slice(0, 8).map(item=>({
           id: item.id,
           image: item.image,
           title: item.title,

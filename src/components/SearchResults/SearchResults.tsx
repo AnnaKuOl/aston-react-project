@@ -16,10 +16,11 @@ export function SearchResults({ searchText }: Props) {
   if (isLoading) {
     return <Spinner />;
   }
-  if (movies.length >= 1) return <CardList movies={movies} />;
-  return null;
-}
+  if (movies.length < 1)
+    return <div>There are no results found. Please try another search.</div>;
 
+  return <CardList movies={movies} />;
+}
 SearchResults.propTypes = {
   searchText: PropTypes.string,
 };

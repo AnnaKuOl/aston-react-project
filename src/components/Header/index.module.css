@@ -1,15 +1,22 @@
 .header {
-  background-color: #512284;
+  background-color: var(--secondary-dark-color);
 }
 .wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: aliceblue;
+  color: var(--primary-light-color);
 }
 .link {
-  color: antiquewhite;
+  color: var(--grey2);
   text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+.link:hover {
+  color: var(--secondary-light-color);
 }
 .navigation {
   display: flex;
@@ -18,4 +25,9 @@
   gap: 10px;
   font-size: 16px;
   font-weight: 700;
+}
+.logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -1,3 +1,5 @@
+import s from './index.module.css';
+
 type Props = {
   type: string;
   value: string;
@@ -8,8 +10,6 @@ type Props = {
 
 export const SearchInput = ({ onChange, ...inputProps }: Props) => {
   return (
-    <div>
-      <input {...inputProps} onChange={onChange} autoFocus />
-    </div>
+    <input className={s.input} onChange={onChange} autoFocus {...inputProps} />
   );
 };

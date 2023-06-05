@@ -1,0 +1,9 @@
+.searchForm {
+  width: 70%;
+  margin: 30px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}

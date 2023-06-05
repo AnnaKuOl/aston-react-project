@@ -1,0 +1,34 @@
+:root {
+  --primary-dark-color: #002b36;
+  --secondary-dark-color: #073642;
+  --primary-light-color: #fdf6e3;
+  --secondary-light-color: #eee8d5;
+  --accent-color: #3bba9c;
+  --error-color: #cb4c16;
+  --grey1: #93a1a1;
+  --grey2: #8fa3a5;
+}
+
+/* Color Theme Swatches in Hex */
+/* .VRTLWRLD.IO-1-hex {
+  color: #784a8c;
+}
+.VRTLWRLD.IO-2-hex {
+  color: #bf907e;
+}
+.VRTLWRLD.IO-3-hex {
+  color: #d9d9d9;
+}
+.VRTLWRLD.IO-4-hex {
+  color: #a6a6a6;
+}
+.VRTLWRLD.IO-5-hex {
+  color: #0d0d0d;
+} */
+
+/* Color Theme Swatches in RGBA */
+/* .VRTLWRLD.IO-1-rgba { color: rgba(120, 74, 140, 1); }
+.VRTLWRLD.IO-2-rgba { color: rgba(191, 143, 126, 1); }
+.VRTLWRLD.IO-3-rgba { color: rgba(216, 216, 216, 1); }
+.VRTLWRLD.IO-4-rgba { color: rgba(165, 165, 165, 1); }
+.VRTLWRLD.IO-5-rgba { color: rgba(12, 12, 12, 1); } */

@@ -12,14 +12,13 @@ import logo from './logo.png';
 import s from './index.module.css';
 
 export function Header() {
-  const isAuth = localStorage.getItem('isAuth');
-  const users: User[] = JSON.parse(localStorage.getItem('users') ?? '');
-  const currentUser = users.find(
-    (user) => user.email === JSON.parse(isAuth ?? '')
-  );
-  const { toggleTheme } = useContext(ThemeContext);
+  const isAuth = JSON.parse(localStorage.getItem('isAuth') ?? '""');
+  const users: User[] = JSON.parse(localStorage.getItem('users') ?? '[]');
+  const currentUser = users?.find((user) => user.email === isAuth);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
   const logout = (e: React.MouseEvent) => {
     e.preventDefault();
     localStorage.removeItem('isAuth');
@@ -27,18 +26,20 @@ export function Header() {
     dispatch(clearFavoriteMovies());
     navigate('/');
   };
+
   const changeTheme = (e: React.MouseEvent) => {
     e.preventDefault();
     toggleTheme();
   };
+
   return (
     <header className={s.header}>
       <div className={`${s.wrapper} container`}>
-        <div>
+        <div className={s.logo}>
           <NavLink to="/">
             <img src={logo} alt="Логотип" />
           </NavLink>
-          <Button onClick={changeTheme}> Смена темы </Button>
+          <Button onClick={changeTheme} classTitle={theme} title={theme} />
         </div>
 
         <nav className={s.navigation}>
@@ -46,20 +47,22 @@ export function Header() {
             <>
               <p>Hello, {currentUser?.login}</p>
               <NavLink to="/favorite" className={s.link}>
-                Избранное
+                Favourites
               </NavLink>
               <NavLink to="/history" className={s.link}>
-                История
+                History
               </NavLink>
-              <Button onClick={logout}>Выйти</Button>
+              <Button onClick={logout} classTitle="logout" title="Logout">
+                Logout
+              </Button>
             </>
           ) : (
             <>
               <NavLink to="/sigin" className={s.link}>
-                Войти
+                Login
               </NavLink>
               <NavLink to="/registration" className={s.link}>
-                Регистрация
+                Registration
               </NavLink>
             </>
           )}

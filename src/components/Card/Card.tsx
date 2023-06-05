@@ -6,12 +6,12 @@ import s from './index.module.css';
 
 export function Card({ image, title, id }: Movie) {
   return (
-    <Link to={`/movie/${id}`}>
+    <Link className={s.link} to={`/movie/${id}`}>
       <div className={s.card}>
-        <img className={s.img} src={image} alt={title} />
-        <h2>{title}</h2>
-        {/* {year && <p>{year}</p>}
-        {rating && <p>Rate: {rating}</p>} */}
+        <div className={s.wrapper}>
+          <img className={s.img} src={image} alt={title} />
+        </div>
+        <h2 className={s.title}>{title}</h2>
       </div>
     </Link>
   );

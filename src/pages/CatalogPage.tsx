@@ -11,6 +11,7 @@ import {
 import { useGetMoviesQuery } from '../redux';
 
 import NotFoundPage from './NotFoundPage';
+import s from './index.module.css';
 
 export default function CatalogPage() {
   const [search, setSearch] = useState('');
@@ -33,15 +34,19 @@ export default function CatalogPage() {
 
   return (
     <>
-      <form onSubmit={handleSearch}>
+      <form className={s.searchForm} onSubmit={handleSearch}>
         <SearchInput
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search"
         />
+        <Button
+          onClick={handleSearch}
+          classTitle="search"
+          title="Search"
+        ></Button>
       </form>
-      <Button onClick={handleSearch}>Поиск</Button>
       {error && <ErrorMessage>{error}</ErrorMessage>}
       <CardList movies={movies} />;
     </>

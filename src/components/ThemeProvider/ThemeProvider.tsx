@@ -1,7 +1,9 @@
 import { createContext, useState } from 'react';
 
+type Theme = 'light' | 'dark';
+
 interface Context {
-  isDark: boolean;
+  theme: Theme;
   toggleTheme: () => void;
 }
 
@@ -10,19 +12,19 @@ interface Props {
 }
 
 export const ThemeContext = createContext<Context>({
-  isDark: false,
+  theme: 'light',
   toggleTheme: () => {},
 });
 
 export const ThemeProvider = ({ children }: Props) => {
-  const [isDark, setIsDark] = useState(false);
+  const [theme, setTheme] = useState<Theme>('light');
 
   function toggleTheme() {
-    setIsDark(!isDark);
+    setTheme(theme === 'light' ? 'dark' : 'light');
   }
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
