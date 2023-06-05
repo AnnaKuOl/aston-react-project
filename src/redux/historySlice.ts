@@ -20,8 +20,11 @@ const historySlice = createSlice({
     },
     clearHistory(state){
       state.history = [];
+    },
+    addAllHistory(state, action){
+      state.history.push(...action.payload);
     }
   }
 });
-export const { addHistory, clearHistory } = historySlice.actions;
+export const { addHistory, clearHistory, addAllHistory } = historySlice.actions;
 export default historySlice.reducer;

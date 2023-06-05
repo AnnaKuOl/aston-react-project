@@ -34,8 +34,11 @@ const favoriteMoviesSlice = createSlice({
     },
     clearFavoriteMovies(state) {
       state.favoriteMovies= [];
+    },
+    addAllFavoriteMovies(state, action){
+      state.favoriteMovies.push(...action.payload);
     }
   }
 });
-export const { addFavoriteMovie, removeFavoriteMovie, clearFavoriteMovies} = favoriteMoviesSlice.actions;
+export const { addFavoriteMovie, removeFavoriteMovie, clearFavoriteMovies, addAllFavoriteMovies} = favoriteMoviesSlice.actions;
 export default favoriteMoviesSlice.reducer;

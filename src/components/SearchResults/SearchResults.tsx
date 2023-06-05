@@ -9,7 +9,6 @@ type Props = {
 };
 export function SearchResults({ searchText }: Props) {
   const { data, isLoading, isError } = useSearchMoviesQuery(searchText);
-
   const movies = data ?? [];
   if (isError) {
     return <h2>Ошибка</h2>;

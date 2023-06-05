@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { useSearchMoviesQuery } from '../../redux';
-
 import { useDebounce } from '../../hooks/useDebaunce';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { addHistory } from '../../redux/historySlice';
@@ -11,9 +10,8 @@ import { addHistory } from '../../redux/historySlice';
 export function Search() {
   const location = useLocation();
   const [search, setSearch] = useState('');
-
-  const debaunceValue = useDebounce(search, 800);
-
+  const dispatch = useAppDispatch();
+  const debaunceValue = useDebounce(search, 1500);
   const {
     data: results,
     isLoading,
@@ -21,8 +19,6 @@ export function Search() {
   } = useSearchMoviesQuery(debaunceValue, {
     skip: debaunceValue.length < 3,
   });
-
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(addHistory(debaunceValue));

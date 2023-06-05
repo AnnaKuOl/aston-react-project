@@ -12,7 +12,6 @@ export default function SearchPage() {
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState(location.state);
   const debaunceValue = useDebounce(search, 500);
-
   useEffect(() => {
     dispatch(addHistory(debaunceValue));
   }, [dispatch, debaunceValue]);

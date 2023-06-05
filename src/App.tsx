@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 
-import { Layout } from './components';
+import { ErrorBoundary, ErrorFallback, Layout } from './components';
 import { PrivateRoute } from './hoc/PrivateRoute';
 
 const FavoritePage = lazy(() => import('./pages/FavoritePage'));
@@ -18,15 +18,31 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<CatalogPage />} />
-        <Route path="search" element={<SearchPage />} />
-        <Route path="movie/:id" element={<SinglePage />} />
+        <Route
+          path="search"
+          element={
+            <ErrorBoundary fallback={<ErrorFallback />}>
+              <SearchPage />
+            </ErrorBoundary>
+          }
+        />
+        <Route
+          path="movie/:id"
+          element={
+            <ErrorBoundary fallback={<ErrorFallback />}>
+              <SinglePage />
+            </ErrorBoundary>
+          }
+        />
         <Route path="sigin" element={<LoginPage />} />
         <Route path="registration" element={<RegistrationPage />} />
         <Route
           path="favorite"
           element={
             <PrivateRoute>
-              <FavoritePage />
+              <ErrorBoundary fallback={<ErrorFallback />}>
+                <FavoritePage />
+              </ErrorBoundary>
             </PrivateRoute>
           }
         />

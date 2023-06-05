@@ -14,8 +14,12 @@ import { Button, Form } from '../../components';
 import { Errors, User } from '../../types/types';
 import { LSKey } from '../../utils/functions';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { addHistory } from '../../redux/historySlice';
-import { FavoriteMovies, addFavoriteMovie } from '../../redux';
+import { addAllHistory } from '../../redux/historySlice';
+import {
+  FavoriteMovies,
+  addAllFavoriteMovies,
+  addFavoriteMovie,
+} from '../../redux';
 
 export const Login = () => {
   const [errorLogin, setErrorLogin] = useState<Errors>({});
@@ -43,13 +47,9 @@ export const Login = () => {
           const favoriteMovies: FavoriteMovies[] = JSON.parse(
             localStorage.getItem(LSKey('fav')) ?? '[]'
           );
-          favoriteMovies.forEach((movie) => {
-            dispatch(addFavoriteMovie(movie));
-          });
-          history.forEach((query) => {
-            dispatch(addHistory(query));
-          });
-          navigate('/');
+          dispatch(addAllFavoriteMovies(favoriteMovies));
+          dispatch(addAllHistory(history));
+          navigate('/', { replace: true });
         } else {
           setErrorLogin({ password: 'Пароль неверен' });
         }
