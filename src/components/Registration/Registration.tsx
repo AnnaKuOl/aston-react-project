@@ -1,4 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
+import cn from 'classnames';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -10,6 +11,7 @@ import {
 } from '../../utils/const';
 import { Button, ErrorMessage, Form } from '..';
 import { User } from '../../types/types';
+import { useTheme } from '../../hooks/useTheme';
 
 import s from './index.module.css';
 
@@ -69,9 +71,9 @@ export const Registration = () => {
   });
 
   return (
-    <Form title="Регистрация" handleFormSubmit={handleSubmit(sendRegisterLS)}>
+    <Form title="Registration" handleFormSubmit={handleSubmit(sendRegisterLS)}>
       <input
-        className={s.input}
+        className={cn(s.input, s[useTheme('input')])}
         {...loginRegister}
         id="login"
         type="text"
@@ -79,7 +81,7 @@ export const Registration = () => {
       />
       {errors?.login && <ErrorMessage>{errors?.login?.message}</ErrorMessage>}
       <input
-        className={s.input}
+        className={cn(s.input, s[useTheme('input')])}
         {...emailRegister}
         id="email"
         type="text"
@@ -88,7 +90,7 @@ export const Registration = () => {
       {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
 
       <input
-        className={s.input}
+        className={cn(s.input, s[useTheme('input')])}
         {...passwordRegister}
         type="password"
         placeholder="password"

@@ -23,9 +23,13 @@
 .link {
   cursor: pointer;
   text-decoration: none;
-  color: var(--primary-dark-color);
 }
+
 .title {
   font-size: 18px;
   text-align: center;
+  color: var(--primary-dark-color);
+}
+.title_dark {
+  color: var(--grey1);
 }

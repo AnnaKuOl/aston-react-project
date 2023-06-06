@@ -1,3 +1,7 @@
+import cn from 'classnames';
+
+import { useTheme } from '../../hooks/useTheme';
+
 import s from './index.module.css';
 
 type Props = {
@@ -10,6 +14,11 @@ type Props = {
 
 export const SearchInput = ({ onChange, ...inputProps }: Props) => {
   return (
-    <input className={s.input} onChange={onChange} autoFocus {...inputProps} />
+    <input
+      className={cn(s.input, s[useTheme('input')])}
+      onChange={onChange}
+      autoFocus
+      {...inputProps}
+    />
   );
 };

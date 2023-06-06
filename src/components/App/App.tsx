@@ -3,6 +3,7 @@ import { lazy } from 'react';
 
 import { ErrorBoundary, ErrorFallback, Layout } from '../../components';
 import { PrivateRoute } from '../../hoc/PrivateRoute';
+import { useTheme } from '../../hooks/useTheme';
 
 const FavoritePage = lazy(() => import('../../pages/FavoritePage'));
 const CatalogPage = lazy(() => import('../../pages/CatalogPage'));
@@ -15,48 +16,50 @@ const SearchPage = lazy(() => import('../../pages/SearchPage'));
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<CatalogPage />} />
-        <Route
-          path="search"
-          element={
-            <ErrorBoundary fallback={<ErrorFallback />}>
-              <SearchPage />
-            </ErrorBoundary>
-          }
-        />
-        <Route
-          path="movie/:id"
-          element={
-            <ErrorBoundary fallback={<ErrorFallback />}>
-              <SinglePage />
-            </ErrorBoundary>
-          }
-        />
-        <Route path="sigin" element={<LoginPage />} />
-        <Route path="registration" element={<RegistrationPage />} />
-        <Route
-          path="favorite"
-          element={
-            <PrivateRoute>
+    <div className={`app ${useTheme('app')}`}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<CatalogPage />} />
+          <Route
+            path="search"
+            element={
               <ErrorBoundary fallback={<ErrorFallback />}>
-                <FavoritePage />
+                <SearchPage />
               </ErrorBoundary>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="history"
-          element={
-            <PrivateRoute>
-              <HistoryPage />
-            </PrivateRoute>
-          }
-        />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+            }
+          />
+          <Route
+            path="movie/:id"
+            element={
+              <ErrorBoundary fallback={<ErrorFallback />}>
+                <SinglePage />
+              </ErrorBoundary>
+            }
+          />
+          <Route path="sigin" element={<LoginPage />} />
+          <Route path="registration" element={<RegistrationPage />} />
+          <Route
+            path="favorite"
+            element={
+              <PrivateRoute>
+                <ErrorBoundary fallback={<ErrorFallback />}>
+                  <FavoritePage />
+                </ErrorBoundary>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="history"
+            element={
+              <PrivateRoute>
+                <HistoryPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 

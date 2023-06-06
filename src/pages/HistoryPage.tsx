@@ -34,7 +34,7 @@ export default function HistoryPage() {
       <div className={s.history}>
         {history?.map((query) => (
           <Link className={s.link} to="/search" key={query} state={query}>
-            {query}
+            &#10003; {query}
           </Link>
         ))}
       </div>

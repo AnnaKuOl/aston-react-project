@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import cn from 'classnames';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
@@ -14,6 +15,7 @@ import { Button, ErrorMessage, Form } from '../../components';
 import { Errors, FavoriteMovies, User } from '../../types/types';
 import { LSKey } from '../../utils/functions';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useTheme } from '../../hooks/useTheme';
 import { addAllHistory } from '../../redux/historySlice';
 import { addAllFavoriteMovies } from '../../redux';
 
@@ -87,7 +89,7 @@ export const Login = () => {
   return (
     <Form title="Login" handleFormSubmit={handleSubmit(sendRegisterLS)}>
       <input
-        className={s.input}
+        className={cn(s.input, s[useTheme('input')])}
         {...emailRegister}
         id="email"
         type="text"
@@ -97,7 +99,7 @@ export const Login = () => {
       {errorLogin?.email && <ErrorMessage>{errorLogin?.email}</ErrorMessage>}
 
       <input
-        className={s.input}
+        className={cn(s.input, s[useTheme('input')])}
         {...passwordRegister}
         type="password"
         placeholder="password"

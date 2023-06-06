@@ -13,6 +13,9 @@
   color: var(--secondary-dark-color);
   letter-spacing: 1px;
 }
+.content_dark {
+  color: var(--grey1);
+}
 
 .bold {
   font-size: 20px;

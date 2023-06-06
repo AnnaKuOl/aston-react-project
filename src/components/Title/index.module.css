@@ -6,3 +6,6 @@
   letter-spacing: 4px;
   text-transform: uppercase;
 }
+.title_dark {
+  color: var(--secondary-light-color);
+}

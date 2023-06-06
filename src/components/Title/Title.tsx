@@ -1,3 +1,7 @@
+import cn from 'classnames';
+
+import { useTheme } from '../../hooks/useTheme';
+
 import s from './index.module.css';
 
 type Props = {
@@ -5,5 +9,5 @@ type Props = {
 };
 
 export function Title({ text }: Props) {
-  return <h2 className={s.title}>{text}</h2>;
+  return <h2 className={cn(s.title, s[useTheme('title')])}>{text}</h2>;
 }

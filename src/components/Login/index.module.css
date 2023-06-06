@@ -11,6 +11,14 @@
   outline: 2px solid var(--grey2);
   background-color: var(--secondary-light-color);
 }
+.input_dark {
+  background-color: var(--grey2);
+  color: var(--secondary-light-color);
+}
+.input_dark:focus {
+  outline: 3px solid var(--accent-color);
+  background-color: var(--grey2);
+}
 .btnGroup {
   display: flex;
   justify-content: flex-end;

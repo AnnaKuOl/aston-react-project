@@ -8,6 +8,15 @@
   font-size: 20px;
   color: var(--primary-dark-color);
 }
+
+.input_dark {
+  background-color: var(--grey2);
+  color: var(--secondary-light-color);
+}
+
 .input:focus {
-  outline: 2px solid var(--grey2);
+  outline: 2px solid var(--secondary-dark-color);
+}
+.input_dark:focus {
+  outline: 3px solid var(--accent-color);
 }
