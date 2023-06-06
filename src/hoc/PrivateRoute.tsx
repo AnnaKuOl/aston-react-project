@@ -8,7 +8,7 @@ export function PrivateRoute({ children }: Props) {
   const isAuth = localStorage.getItem('isAuth');
 
   if (!isAuth) {
-    return <Navigate to="/sigin" state={{ from: location }} />;
+    return <Navigate to="/signin" state={{ from: location }} />;
   }
 
   return children;

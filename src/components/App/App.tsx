@@ -36,7 +36,7 @@ function App() {
               </ErrorBoundary>
             }
           />
-          <Route path="sigin" element={<LoginPage />} />
+          <Route path="signin" element={<LoginPage />} />
           <Route path="registration" element={<RegistrationPage />} />
           <Route
             path="favorite"

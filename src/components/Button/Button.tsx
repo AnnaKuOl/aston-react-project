@@ -1,7 +1,3 @@
-import { useContext } from 'react';
-
-import { ThemeContext } from '../ThemeProvider/ThemeProvider';
-
 import s from './index.module.css';
 
 interface Props {
@@ -11,9 +7,6 @@ interface Props {
   title?: string;
 }
 export function Button({ children, onClick, classTitle, title }: Props) {
-  console.log('classTitle: ', classTitle);
-  const { theme } = useContext(ThemeContext);
-
   const style = classTitle ? `${s.btn} ${s[classTitle]}` : `${s.btn}`;
 
   return (

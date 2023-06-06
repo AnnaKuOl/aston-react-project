@@ -3,7 +3,7 @@ import cn from 'classnames';
 
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
   EMAIL_REGEXP,
@@ -30,6 +30,8 @@ export const Login = () => {
     formState: { errors },
   } = useForm<User>({ mode: 'onBlur' });
   const navigate = useNavigate();
+  const location = useLocation();
+
   const dispatch = useAppDispatch();
   const sendRegisterLS: SubmitHandler<User> = (data) => {
     const usersLS = localStorage.getItem(LS_USERS_KEY);
@@ -49,7 +51,7 @@ export const Login = () => {
           );
           dispatch(addAllFavoriteMovies(favoriteMovies));
           dispatch(addAllHistory(history));
-          navigate('/', { replace: true });
+          navigate(location.state, { replace: true });
         } else {
           setErrorLogin({ password: 'Invalid password' });
         }
