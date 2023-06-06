@@ -1,33 +1,7 @@
-// import { useState } from 'react';
+import { Title } from '../Title/Title';
 
-// export function Form() {
-//   const [loginValue, setLoginValue] = useState('');
-//   const [passwordValue, setPasswordValue] = useState('');
+import s from './index.module.css';
 
-//   return (
-//     <form>
-//       <label>
-//         Login
-//         <input
-//           type="text"
-//           placeholder="Login"
-//           value={loginValue}
-//           onChange={(e) => setLoginValue(e.target.value)}
-//         />
-//         <p>Ошибка ввода логина</p>
-//       </label>
-//       <label>
-//         Password
-//         <input
-//           type="password"
-//           value={passwordValue}
-//           onChange={(e) => setPasswordValue(e.target.value)}
-//         />
-//         <p>Ошибка ввода пароля</p>
-//       </label>
-//     </form>
-//   );
-// }
 interface Props {
   title: string;
   children: React.ReactNode;
@@ -35,8 +9,8 @@ interface Props {
 }
 export const Form = ({ title, children, handleFormSubmit }: Props) => {
   return (
-    <form onSubmit={handleFormSubmit}>
-      <h1>{title}</h1>
+    <form className={s.form} onSubmit={handleFormSubmit}>
+      <Title text={title} />
       {children}
     </form>
   );

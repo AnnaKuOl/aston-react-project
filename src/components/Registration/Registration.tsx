@@ -11,6 +11,8 @@ import {
 import { Button, ErrorMessage, Form } from '..';
 import { User } from '../../types/types';
 
+import s from './index.module.css';
+
 export const Registration = () => {
   const {
     register,
@@ -68,19 +70,41 @@ export const Registration = () => {
 
   return (
     <Form title="Регистрация" handleFormSubmit={handleSubmit(sendRegisterLS)}>
-      <input {...loginRegister} id="login" type="text" placeholder="login" />
+      <input
+        className={s.input}
+        {...loginRegister}
+        id="login"
+        type="text"
+        placeholder="login"
+      />
       {errors?.login && <ErrorMessage>{errors?.login?.message}</ErrorMessage>}
-      <input {...emailRegister} id="email" type="text" placeholder="email" />
+      <input
+        className={s.input}
+        {...emailRegister}
+        id="email"
+        type="text"
+        placeholder="email"
+      />
       {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
 
-      <input {...passwordRegister} type="password" placeholder="Пароль" />
+      <input
+        className={s.input}
+        {...passwordRegister}
+        type="password"
+        placeholder="password"
+      />
 
       {errors?.password && (
         <ErrorMessage>{errors?.password?.message}</ErrorMessage>
       )}
-
-      <Button onClick={handleSubmit(sendRegisterLS)}>Зарегистрироваться</Button>
-      <Button onClick={handleClickLoginButton}>Войти</Button>
+      <div className={s.btnGroup}>
+        <Button classTitle="login" onClick={handleSubmit(sendRegisterLS)}>
+          Зарегистрироваться
+        </Button>
+        <Button classTitle="login" onClick={handleClickLoginButton}>
+          Войти
+        </Button>
+      </div>
     </Form>
   );
 };

@@ -11,13 +11,45 @@
   line-height: 20px;
   text-transform: uppercase;
   border-radius: 8px;
-  padding: 5px 10px;
+  padding: 10px 15px;
   background-color: inherit;
-  color: inherit;
 }
-.btn:hover {
-  transform: scale(1.04);
+/* .dark_outline {
+  color: var(--grey1);
+  border: 1px solid var(--grey1);
 }
+.dark_outline :hover {
+  color: var(--secondary-light-color);
+  border: 1px solid var(--secondary-light-color);
+}
+.light_outline {
+  color: var(--grey2);
+  border: 1px solid var(--grey2);
+}
+.light_outline:hover {
+  color: var(--secondary-dark-color);
+  border: 1px solid var(--secondary-dark-color);
+}
+.dark_fill {
+  background-color: var(--secondary-dark-color);
+  color: var(--secondary-light-color);
+  border: none;
+  outline: none;
+}
+.dark_fill:hover {
+  background-color: var(--secondary-light-color);
+  color: var(--secondary-dark-color);
+}
+.ligth_fill {
+  background-color: var(--secondary-light-color);
+  color: var(--secondary-dark-color);
+  border: none;
+  outline: none;
+}
+.fill_ligth:hover {
+  background-color: var(--secondary-dark-color);
+  color: var(--secondary-light-color); */
+/* } */
 .like {
   background: no-repeat url('./img/like.svg');
   border: none;
@@ -39,8 +71,8 @@
 .search {
   background: no-repeat url('./img/search.svg') center;
   border: none;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   right: 5px;
 }
@@ -62,15 +94,32 @@
 }
 .logout:hover {
   color: var(--primary-light-color);
-  transform: none;
 }
-.back {
+.outline {
+  font-size: 14px;
   color: var(--grey1);
   border: 1px solid var(--grey2);
 }
-
-.back:hover {
+.outline:hover {
   color: var(--secondary-dark-color);
   border: 1px solid var(--secondary-dark-color);
-  transform: none;
+}
+.login {
+  background-color: var(--primary-light-color);
+  color: var(--secondary-dark-color);
+  border: 1px solid var(--secondary-dark-color);
+  width: 100%;
+}
+.login:hover {
+  background-color: var(--secondary-dark-color);
+  color: var(--primary-light-color);
+  /* border: 1px solid var(--grey2);/ */
+}
+
+.btn:active {
+  background-color: var(--accent-color);
+}
+.dislike:active,
+.like:active {
+  background-color: inherit;
 }

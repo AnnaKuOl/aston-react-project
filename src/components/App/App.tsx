@@ -6,7 +6,7 @@ import { PrivateRoute } from '../../hoc/PrivateRoute';
 
 const FavoritePage = lazy(() => import('../../pages/FavoritePage'));
 const CatalogPage = lazy(() => import('../../pages/CatalogPage'));
-const SinglePage = lazy(() => import('../../pages/SinglePage'));
+const SinglePage = lazy(() => import('../../pages/SinglePage/SinglePage'));
 const LoginPage = lazy(() => import('../../pages/LoginPage'));
 const NotFoundPage = lazy(() => import('../../pages/NotFoundPage'));
 const RegistrationPage = lazy(() => import('../../pages/RegistrationPage'));

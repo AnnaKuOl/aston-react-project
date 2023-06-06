@@ -15,3 +15,4 @@ export * from './FavoriteButton/FavoriteButton';
 export * from './Spinner/Spinner';
 export * from './ErrorMessage/ErrorMessage';
 export * from './Footer/Footer';
+export * from './Title/Title';

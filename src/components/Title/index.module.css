@@ -1,0 +1,8 @@
+.title {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--secondary-dark-color);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}

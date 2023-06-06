@@ -7,6 +7,7 @@ import {
   ErrorMessage,
   SearchInput,
   Spinner,
+  Title,
 } from '../components';
 import { useGetMoviesQuery } from '../redux';
 
@@ -34,20 +35,23 @@ export default function CatalogPage() {
 
   return (
     <>
-      <form className={s.searchForm} onSubmit={handleSearch}>
-        <SearchInput
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search"
-        />
-        <Button
-          onClick={handleSearch}
-          classTitle="search"
-          title="Search"
-        ></Button>
-      </form>
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+      <div className={s.searchGroup}>
+        <form className={s.searchForm} onSubmit={handleSearch}>
+          <SearchInput
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search"
+          />
+          <Button
+            onClick={handleSearch}
+            classTitle="search"
+            title="Search"
+          ></Button>
+        </form>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+      </div>
+      <Title text="Most popular movies" />
       <CardList movies={movies} />;
     </>
   );

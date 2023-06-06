@@ -1,9 +1,44 @@
 .searchForm {
   width: 70%;
-  margin: 30px auto;
+  margin: 10px auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
   position: relative;
+}
+.searchGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+}
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+.history {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+}
+.link {
+  color: var(--grey2);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+.link:hover {
+  color: var(--accent-color);
+}
+.text {
+  color: var(--grey2);
+  text-align: center;
 }

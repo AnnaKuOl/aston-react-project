@@ -14,7 +14,9 @@ import s from './index.module.css';
 export function Header() {
   const isAuth = JSON.parse(localStorage.getItem('isAuth') ?? '""');
   const users: User[] = JSON.parse(localStorage.getItem('users') ?? '[]');
-  const currentUser = users?.find((user) => user.email === isAuth);
+  const currentUser: User | undefined = users?.find(
+    (user) => user.email === isAuth
+  );
   const { theme, toggleTheme } = useContext(ThemeContext);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();

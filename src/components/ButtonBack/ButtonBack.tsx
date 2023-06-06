@@ -6,7 +6,7 @@ export function ButtonBack() {
   const navigate = useNavigate();
 
   return (
-    <Button classTitle="back" onClick={() => navigate(-1)}>
+    <Button classTitle="outline" onClick={() => navigate(-1)}>
       Back
     </Button>
   );

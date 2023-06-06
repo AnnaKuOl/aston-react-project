@@ -1,0 +1,5 @@
+.text {
+  text-align: end;
+  color: var(--error-color);
+  font-size: 14px;
+}

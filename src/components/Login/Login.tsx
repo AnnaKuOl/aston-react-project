@@ -17,6 +17,8 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { addAllHistory } from '../../redux/historySlice';
 import { addAllFavoriteMovies } from '../../redux';
 
+import s from './index.module.css';
+
 export const Login = () => {
   const [errorLogin, setErrorLogin] = useState<Errors>({});
 
@@ -47,13 +49,13 @@ export const Login = () => {
           dispatch(addAllHistory(history));
           navigate('/', { replace: true });
         } else {
-          setErrorLogin({ password: 'Пароль неверен' });
+          setErrorLogin({ password: 'Invalid password' });
         }
       } else {
-        setErrorLogin({ email: 'Пользователь не найден' });
+        setErrorLogin({ email: 'User not found' });
       }
     } else {
-      setErrorLogin({ email: 'Пользователь не найден' });
+      setErrorLogin({ email: 'User not found' });
     }
   };
   const handleClickRegisterButton = (e: React.MouseEvent) => {
@@ -83,12 +85,23 @@ export const Login = () => {
   });
 
   return (
-    <Form title="Войти" handleFormSubmit={handleSubmit(sendRegisterLS)}>
-      <input {...emailRegister} id="email" type="text" placeholder="email" />
+    <Form title="Login" handleFormSubmit={handleSubmit(sendRegisterLS)}>
+      <input
+        className={s.input}
+        {...emailRegister}
+        id="email"
+        type="text"
+        placeholder="email"
+      />
       {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
       {errorLogin?.email && <ErrorMessage>{errorLogin?.email}</ErrorMessage>}
 
-      <input {...passwordRegister} type="password" placeholder="Пароль" />
+      <input
+        className={s.input}
+        {...passwordRegister}
+        type="password"
+        placeholder="password"
+      />
 
       {errors?.password && (
         <ErrorMessage>{errors?.password?.message}</ErrorMessage>
@@ -96,9 +109,14 @@ export const Login = () => {
       {errorLogin?.password && (
         <ErrorMessage>{errorLogin?.password}</ErrorMessage>
       )}
-
-      <Button onClick={handleSubmit(sendRegisterLS)}>Войти</Button>
-      <Button onClick={handleClickRegisterButton}>Зарегистрироваться</Button>
+      <div className={s.btnGroup}>
+        <Button classTitle="login" onClick={handleSubmit(sendRegisterLS)}>
+          Login
+        </Button>
+        <Button classTitle="login" onClick={handleClickRegisterButton}>
+          register
+        </Button>
+      </div>
     </Form>
   );
 };

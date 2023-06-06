@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+}
+@media (max-width: 880px) {
+  .wrapper {
+    flex-direction: column;
+  }
+}
+
+.content {
+  color: var(--secondary-dark-color);
+  letter-spacing: 1px;
+}
+
+.bold {
+  font-size: 20px;
+  font-weight: 600;
+  padding-right: 10px;
+  letter-spacing: 2px;
+}
+.img {
+  max-width: 400px;
+  position: relative;
+  align-self: center;
+}
