@@ -1,4 +1,4 @@
-# Museum Collection
+# Movie Search
 
 Учебный проект выполнен в рамках React-интенсива компании Aston.
 
