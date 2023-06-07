@@ -24,7 +24,8 @@
   letter-spacing: 2px;
 }
 .img {
-  max-width: 400px;
+  min-width: 300px;
+  max-width: 450px;
   position: relative;
   align-self: center;
 }

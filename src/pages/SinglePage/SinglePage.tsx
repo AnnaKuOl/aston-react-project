@@ -54,7 +54,7 @@ export default function SinglePage() {
             ))}
           </p>
           <p className={cn(s.content, s[useTheme('content')])}>
-            <span className={s.bold}>P, s[useTheme('content')])lot: </span>
+            <span className={s.bold}>Plot: </span>
             {movie?.plot}
           </p>
         </div>

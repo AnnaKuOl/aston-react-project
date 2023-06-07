@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
 
+import s from './index.module.css';
+
 export default function NotFoundPage() {
   return (
-    <div>
-      This page doesn't exist. Go <Link to="/">home</Link>
+    <div className={s.error}>
+      This page doesn't exist. Go{' '}
+      <Link className={s.link} to="/">
+        home
+      </Link>
     </div>
   );
 }

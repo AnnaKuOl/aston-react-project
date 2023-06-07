@@ -29,15 +29,15 @@ export const Registration = () => {
       const updateUsers: User[] = JSON.parse(users);
       updateUsers.find((user) => user.email !== data.email)
         ? localStorage.setItem('users', JSON.stringify([...updateUsers, data]))
-        : navigate('/sigin');
+        : navigate('/signin');
     } else {
       localStorage.setItem('users', JSON.stringify([data]));
     }
-    navigate('/sigin');
+    navigate('/signin');
   };
   const handleClickLoginButton = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigate('/sigin');
+    navigate('/signin');
   };
   const emailRegister = register('email', {
     required: {

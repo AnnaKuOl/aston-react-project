@@ -14,42 +14,7 @@
   padding: 10px 15px;
   background-color: inherit;
 }
-/* .dark_outline {
-  color: var(--grey1);
-  border: 1px solid var(--grey1);
-}
-.dark_outline :hover {
-  color: var(--secondary-light-color);
-  border: 1px solid var(--secondary-light-color);
-}
-.light_outline {
-  color: var(--grey2);
-  border: 1px solid var(--grey2);
-}
-.light_outline:hover {
-  color: var(--secondary-dark-color);
-  border: 1px solid var(--secondary-dark-color);
-}
-.dark_fill {
-  background-color: var(--secondary-dark-color);
-  color: var(--secondary-light-color);
-  border: none;
-  outline: none;
-}
-.dark_fill:hover {
-  background-color: var(--secondary-light-color);
-  color: var(--secondary-dark-color);
-}
-.ligth_fill {
-  background-color: var(--secondary-light-color);
-  color: var(--secondary-dark-color);
-  border: none;
-  outline: none;
-}
-.fill_ligth:hover {
-  background-color: var(--secondary-dark-color);
-  color: var(--secondary-light-color); */
-/* } */
+
 .like {
   background: no-repeat url('./img/like.svg');
   border: none;
@@ -121,4 +86,8 @@
 .dislike:active,
 .like:active {
   background-color: inherit;
+}
+.dislike:hover,
+.like:hover {
+  transform: scale(1.1);
 }

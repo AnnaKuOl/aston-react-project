@@ -1,3 +1,5 @@
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { addFavoriteMovie, removeFavoriteMovie } from '../../redux';
@@ -13,6 +15,8 @@ type Props = {
 
 export function FavoriteButton({ id, movie }: Props) {
   const isAuth = localStorage.getItem('isAuth') ?? '';
+  const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const favoriteMovies = useAppSelector(
     (state) => state.favoriteMovies.favoriteMovies
@@ -21,13 +25,21 @@ export function FavoriteButton({ id, movie }: Props) {
 
   const addFavorite = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(addFavoriteMovie(movie));
+    if (isAuth) {
+      dispatch(addFavoriteMovie(movie));
+    } else {
+      navigate('/signin', { state: location.pathname });
+    }
   };
   const removeFavorite = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(removeFavoriteMovie(movie));
+    if (isAuth) {
+      dispatch(removeFavoriteMovie(movie));
+    } else {
+      navigate('/signin');
+    }
   };
-  if (!isAuth) return null;
+
   return (
     <div className={s.btns}>
       {!isFav && (

@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { User } from '../types/types';
 
-
 const initialState:User[] = [];
 
 const usersSlice = createSlice({
@@ -15,8 +14,6 @@ const usersSlice = createSlice({
           login: action.payload.login,
           email: action.payload.email,
           password: action.payload.password,
-          favoriteMovies: [],
-          history:[],
         }
       );            
     },
