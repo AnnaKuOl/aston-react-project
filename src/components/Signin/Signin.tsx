@@ -11,7 +11,7 @@ import {
   PASSWORD_REGEXP,
   VALIDATE_CONFIG,
 } from '../../utils/const';
-import { Button, ErrorMessage, Form } from '../../components';
+import { Button, ErrorMessage, Form } from '..';
 import { Errors, FavoriteMovies, User } from '../../types/types';
 import { LSKey } from '../../utils/functions';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -21,7 +21,7 @@ import { addAllFavoriteMovies } from '../../redux';
 
 import s from './index.module.css';
 
-export const Login = () => {
+export const Signin = () => {
   const [errorLogin, setErrorLogin] = useState<Errors>({});
 
   const {
@@ -31,8 +31,8 @@ export const Login = () => {
   } = useForm<User>({ mode: 'onBlur' });
   const navigate = useNavigate();
   const location = useLocation();
-
   const dispatch = useAppDispatch();
+
   const sendRegisterLS: SubmitHandler<User> = (data) => {
     const usersLS = localStorage.getItem(LS_USERS_KEY);
 
@@ -51,17 +51,22 @@ export const Login = () => {
           );
           dispatch(addAllFavoriteMovies(favoriteMovies));
           dispatch(addAllHistory(history));
-          navigate(location.state, { replace: true });
+          if (location.state) {
+            navigate(location.state, { replace: true });
+          } else {
+            navigate('/', { replace: true });
+          }
         } else {
           setErrorLogin({ password: 'Invalid password' });
         }
       } else {
-        setErrorLogin({ email: 'User not found' });
+        setErrorLogin({ email: 'User with this login does not exist' });
       }
     } else {
-      setErrorLogin({ email: 'User not found' });
+      setErrorLogin({ email: 'User with this login does not exist' });
     }
   };
+
   const handleClickRegisterButton = (e: React.MouseEvent) => {
     e.preventDefault();
     navigate('/registration');

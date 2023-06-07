@@ -10,7 +10,6 @@ import s from './index.module.css';
 
 export default function HistoryPage() {
   const history = useAppSelector((state) => state.history.history);
-  console.log('history: ', history);
   const dispatch = useAppDispatch();
   const deleteHistory = () => {
     dispatch(clearHistory());
