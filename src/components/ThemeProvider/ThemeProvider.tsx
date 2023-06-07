@@ -2,14 +2,14 @@ import { createContext, useState } from 'react';
 
 type Theme = 'light' | 'dark';
 
-interface Context {
+type Context = {
   theme: Theme;
   toggleTheme: () => void;
-}
+};
 
-interface Props {
+type Props = {
   children: React.ReactNode;
-}
+};
 
 export const ThemeContext = createContext<Context>({
   theme: 'light',

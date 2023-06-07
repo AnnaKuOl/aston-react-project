@@ -14,7 +14,7 @@ import { useGetMoviesQuery } from '../redux';
 import NotFoundPage from './NotFoundPage';
 import s from './index.module.css';
 
-export default function CatalogPage() {
+export default function HomePage() {
   const [search, setSearch] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ export default function CatalogPage() {
     if (search.trim().length) {
       navigate('/search', { state: search });
     } else {
-      setError('Поле ввода не должно быть пустым');
+      setError('The input field should not be empty');
     }
   };
 

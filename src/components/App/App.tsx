@@ -6,7 +6,7 @@ import { PrivateRoute } from '../../hoc/PrivateRoute';
 import { useTheme } from '../../hooks/useTheme';
 
 const FavoritePage = lazy(() => import('../../pages/FavoritePage'));
-const CatalogPage = lazy(() => import('../../pages/CatalogPage'));
+const HomePage = lazy(() => import('../../pages/HomePage'));
 const SinglePage = lazy(() => import('../../pages/SinglePage/SinglePage'));
 const LoginPage = lazy(() => import('../../pages/LoginPage'));
 const NotFoundPage = lazy(() => import('../../pages/NotFoundPage'));
@@ -19,7 +19,7 @@ function App() {
     <div className={`app ${useTheme('app')}`}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<CatalogPage />} />
+          <Route index element={<HomePage />} />
           <Route
             path="search"
             element={

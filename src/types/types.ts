@@ -1,4 +1,4 @@
-interface Actor {
+type Actor = {
     id: string; 
     image: string; 
     name: string; 
@@ -39,7 +39,8 @@ export interface FullMovieDataClient {
 export type ShortMovieDataClient = Pick<FullMovieDataClient, 'id' | 'rating' | 'image' | 'title' | 'year'>;
 
 export type Movie = ShortMovieDataClient | FavoriteMovies | MovieSearch;
-export interface ServerResponse {
+
+export type ServerResponse = {
   searchType: string
   expression: string
   results: MovieSearch[]
@@ -49,7 +50,7 @@ export interface FavoriteMovies extends FullMovieDataClient{
   isFavorite: boolean;   
 
 }
-export interface MovieSearch {
+export type MovieSearch = {
   id: string
   resultType?: string
   image: string
@@ -64,6 +65,4 @@ export type User = {
   login: string;
   email: string;
   password: string;
-  favoriteMovies: FavoriteMovies[];
-  history: Array<string>;
 };

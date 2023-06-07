@@ -4,8 +4,7 @@ import { FavoriteMovies} from '../types/types';
 import { LSKey } from '../utils/functions';
 
 
-interface FavoriteMoviesState {
-
+type FavoriteMoviesState = {
     favoriteMovies: FavoriteMovies[];
     isLoading:boolean;
     error: string;

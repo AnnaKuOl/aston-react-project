@@ -4,11 +4,11 @@ export const EMAIL_REGEXP =
 export const PASSWORD_REGEXP = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 export const LOGIN_REGEXP = /^[A-Za-z0-9]{4,16}$/;
 export const VALIDATE_CONFIG = {
-  requiredMessage: 'Поле обязательно к заполнению',
-  loginMessage: 'Логин должен содержать от 4 до 16 латинского алфавита без спецсимволов',
-  emailMessage: 'Email не соотвествует формату электронной почты',
+  requiredMessage: 'Required ti fill in',
+  loginMessage: 'Login should be from 4 to 16 letters or numbers without special symbols',
+  emailMessage: 'Invalid email address',
   passwordMessage:
-    'Пароль должен содержать минимум восемь символов, одну букву латинского алфавита и одну цифру',
+    'Password should be from 8 characters and should contain at least one number',
 };
 
 export const LS_USERS_KEY= 'users';

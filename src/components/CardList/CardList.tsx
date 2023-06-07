@@ -7,9 +7,9 @@ import { Movie } from '../../types/types';
 
 import s from './index.module.css';
 
-interface Props {
+type Props = {
   movies: Movie[];
-}
+};
 
 export function CardList({ movies }: Props) {
   return (
