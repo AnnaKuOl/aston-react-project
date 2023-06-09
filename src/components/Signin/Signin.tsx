@@ -99,7 +99,7 @@ export const Signin = () => {
         className={cn(s.input, s[useTheme('input')])}
         {...emailRegister}
         id="email"
-        type="text"
+        type="email"
         placeholder="email"
       />
       {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
@@ -120,7 +120,7 @@ export const Signin = () => {
       )}
       <div className={s.btnGroup}>
         <Button classTitle="login" onClick={handleSubmit(sendRegisterLS)}>
-          Login
+          Signin
         </Button>
         <Button classTitle="login" onClick={handleClickRegisterButton}>
           register

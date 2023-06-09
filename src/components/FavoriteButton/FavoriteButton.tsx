@@ -4,16 +4,18 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { addFavoriteMovie, removeFavoriteMovie } from '../../redux';
 import { Button } from '../../components';
-import { FavoriteMovies, FullMovieDataClient } from '../../types/types';
 
 import s from './index.module.css';
-
-type Props = {
+type Fav = {
   id: string;
-  movie?: FavoriteMovies | FullMovieDataClient;
+  title?: string;
+  image?: string;
+};
+type Props = {
+  movie: Fav;
 };
 
-export function FavoriteButton({ id, movie }: Props) {
+export function FavoriteButton({ movie }: Props) {
   const isAuth = localStorage.getItem('isAuth') ?? '';
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,7 +23,9 @@ export function FavoriteButton({ id, movie }: Props) {
   const favoriteMovies = useAppSelector(
     (state) => state.favoriteMovies.favoriteMovies
   );
-  const isFav = favoriteMovies.find((movie) => movie.id === id)?.isFavorite;
+  const isFav = favoriteMovies.find(
+    (favorite) => favorite.id === movie.id
+  )?.isFavorite;
 
   const addFavorite = (e: React.MouseEvent) => {
     e.preventDefault();

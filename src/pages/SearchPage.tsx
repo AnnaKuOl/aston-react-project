@@ -4,18 +4,20 @@ import { useLocation } from 'react-router-dom';
 
 import { useDebounce } from '../hooks/useDebaunce';
 import { useAppDispatch } from '../hooks/useAppDispatch';
-import { SearchInput, SearchResults, Title } from '../components';
+import { SearchInput, SearchResults, Spinner, Title } from '../components';
 import { addHistory } from '../redux/historySlice';
 
 import s from './index.module.css';
 
 export default function SearchPage() {
+  const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState(location.state);
   const debaunceValue = useDebounce(search, 500);
   useEffect(() => {
     dispatch(addHistory(debaunceValue));
+    setIsLoading(false);
   }, [dispatch, debaunceValue]);
 
   return (
@@ -29,7 +31,7 @@ export default function SearchPage() {
         />
       </div>
       <Title text="Search results" />
-      <SearchResults searchText={debaunceValue} />
+      {isLoading ? <Spinner /> : <SearchResults searchText={debaunceValue} />}
     </>
   );
 }

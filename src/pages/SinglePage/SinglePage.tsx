@@ -12,6 +12,16 @@ import s from './index.module.css';
 export default function SinglePage() {
   const { id = '' } = useParams();
   const { data: movie, isLoading, isError } = useGetMovieQuery(id);
+  type Fav = {
+    id: string;
+    title?: string;
+    image?: string;
+  };
+  const favoriteMovie: Fav = {
+    id: id,
+    title: movie?.title,
+    image: movie?.image,
+  };
 
   return (
     <div>
@@ -19,7 +29,7 @@ export default function SinglePage() {
       {isLoading && <Spinner />}
       <div className={s.wrapper}>
         <div className={s.img}>
-          <FavoriteButton id={id} movie={movie} />
+          <FavoriteButton movie={favoriteMovie} />
           <img src={movie?.image} alt={movie?.title} />
         </div>
         <div>

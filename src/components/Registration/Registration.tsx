@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import cn from 'classnames';
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {
   EMAIL_REGEXP,
@@ -16,6 +17,8 @@ import { useTheme } from '../../hooks/useTheme';
 import s from './index.module.css';
 
 export const Registration = () => {
+  const [error, setError] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -27,13 +30,16 @@ export const Registration = () => {
     const users = localStorage.getItem('users');
     if (users) {
       const updateUsers: User[] = JSON.parse(users);
-      updateUsers.find((user) => user.email !== data.email)
-        ? localStorage.setItem('users', JSON.stringify([...updateUsers, data]))
-        : navigate('/signin');
+      if (updateUsers.find((user) => user.email !== data.email)) {
+        localStorage.setItem('users', JSON.stringify([...updateUsers, data]));
+        navigate('/signin');
+      } else {
+        setError(true);
+      }
     } else {
       localStorage.setItem('users', JSON.stringify([data]));
+      navigate('/signin');
     }
-    navigate('/signin');
   };
   const handleClickLoginButton = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -84,9 +90,17 @@ export const Registration = () => {
         className={cn(s.input, s[useTheme('input')])}
         {...emailRegister}
         id="email"
-        type="text"
+        type="email"
         placeholder="email"
       />
+      {error && (
+        <ErrorMessage>
+          This email is already registered.{' '}
+          <Link to="/signin" className={s.link}>
+            Click here to signin
+          </Link>
+        </ErrorMessage>
+      )}
       {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
 
       <input
@@ -101,10 +115,10 @@ export const Registration = () => {
       )}
       <div className={s.btnGroup}>
         <Button classTitle="login" onClick={handleSubmit(sendRegisterLS)}>
-          Зарегистрироваться
+          register
         </Button>
         <Button classTitle="login" onClick={handleClickLoginButton}>
-          Войти
+          Signin
         </Button>
       </div>
     </Form>
