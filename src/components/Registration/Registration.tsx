@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import cn from 'classnames';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import {
   EMAIL_REGEXP,
@@ -93,14 +93,7 @@ export const Registration = () => {
         type="email"
         placeholder="email"
       />
-      {error && (
-        <ErrorMessage>
-          This email is already registered.{' '}
-          <Link to="/signin" className={s.link}>
-            Click here to signin
-          </Link>
-        </ErrorMessage>
-      )}
+      {error && <ErrorMessage>This email is already registered.</ErrorMessage>}
       {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
 
       <input
