@@ -22,11 +22,11 @@
 ### Redux
 
 - Используем Modern Redux with Redux Toolkit: [store](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/redux/store.ts).
-- Используем слайсы: [usersSlice](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/redux/usersSlice.ts), [favoriteMoviesSlice](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/redux/favoriteMoviesSlice.ts), [historySlice](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/redux/historySlice.ts).
+- Используем слайсы: [favoriteMoviesSlice](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/redux/favoriteMoviesSlice.ts), [historySlice](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/redux/historySlice.ts).
 - Есть хотя бы одна кастомная мидлвара: [localStorageMiddleware](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/redux/middleware/localStorageMiddleware.tsx).
 - Используется RTK Query: [moviesApi](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/redux/moviesApi.ts).
 - Используется Transforming Responses: [moviesApi](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/redux/moviesApi.ts).
-=======
+
 ## 2 уровень
 
 - Использован TypeScript.

@@ -11,5 +11,3 @@ export const VALIDATE_CONFIG = {
   passwordMessage:
     'Password should be from 8 characters, only latin letters and should contain at least one number',
 };
-
-export const LS_USERS_KEY= 'users';

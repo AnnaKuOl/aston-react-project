@@ -2,12 +2,17 @@ import { Link } from 'react-router-dom';
 
 import s from './index.module.css';
 
-export default function NotFoundPage() {
+type Props = {
+  text: string;
+  pathForTransition?: string;
+};
+
+export default function NotFoundPage({ text, pathForTransition = '' }: Props) {
   return (
     <div className={s.error}>
-      This page doesn't exist. Go{' '}
-      <Link className={s.link} to="/">
-        home
+      {text}
+      <Link className={s.link} to={`/${pathForTransition}`}>
+        {pathForTransition ? <span>{pathForTransition}</span> : 'home'}
       </Link>
     </div>
   );

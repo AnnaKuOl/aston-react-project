@@ -57,7 +57,10 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route
+            path="*"
+            element={<NotFoundPage text="This page does not exist. Go " />}
+          />
         </Route>
       </Routes>
     </div>

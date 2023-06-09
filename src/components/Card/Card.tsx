@@ -3,6 +3,7 @@ import cn from 'classnames';
 
 import { Movie } from '../../types/types';
 import { useTheme } from '../../hooks/useTheme';
+import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
 
 import s from './index.module.css';
 
@@ -11,6 +12,7 @@ export function Card({ image, title, id }: Movie) {
     <Link className={s.link} to={`/movie/${id}`}>
       <div className={s.card}>
         <div className={s.wrapper}>
+          <FavoriteButton movie={{ image, title, id }} />
           <img className={s.img} src={image} alt={title} />
         </div>
         <h2 className={cn(s.title, s[useTheme('title')])}>{title}</h2>

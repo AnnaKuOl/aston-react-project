@@ -10,7 +10,7 @@ import {
   PASSWORD_REGEXP,
   VALIDATE_CONFIG,
 } from '../../utils/const';
-import { Button, ErrorMessage, Form } from '..';
+import { Button, ErrorMessage, Form, Title } from '..';
 import { Errors, FavoriteMovies, User } from '../../types/types';
 import { LSKey, getDataFromLS, setDataToLS } from '../../utils/functions';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
@@ -30,6 +30,7 @@ export const Signin = () => {
   } = useForm<User>({ mode: 'onBlur' });
   const navigate = useNavigate();
   const location = useLocation();
+  console.log('location: ', location);
   const dispatch = useAppDispatch();
 
   const sendRegisterLS: SubmitHandler<User> = (data) => {
@@ -48,8 +49,8 @@ export const Signin = () => {
           );
           dispatch(addAllFavoriteMovies(favoriteMovies));
           dispatch(addAllHistory(history));
-          if (location.state) {
-            navigate(location.state, { replace: true });
+          if (location.state.path) {
+            navigate(location.state.path, { replace: true });
           } else {
             navigate('/', { replace: true });
           }
@@ -91,38 +92,43 @@ export const Signin = () => {
   });
 
   return (
-    <Form title="Login" handleFormSubmit={handleSubmit(sendRegisterLS)}>
-      <input
-        className={cn(s.input, s[useTheme('input')])}
-        {...emailRegister}
-        id="email"
-        type="email"
-        placeholder="email"
-      />
-      {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
-      {errorLogin?.email && <ErrorMessage>{errorLogin?.email}</ErrorMessage>}
-
-      <input
-        className={cn(s.input, s[useTheme('input')])}
-        {...passwordRegister}
-        type="password"
-        placeholder="password"
-      />
-
-      {errors?.password && (
-        <ErrorMessage>{errors?.password?.message}</ErrorMessage>
+    <>
+      {location?.state?.title && (
+        <h3 className={s.title}>{location.state.title}</h3>
       )}
-      {errorLogin?.password && (
-        <ErrorMessage>{errorLogin?.password}</ErrorMessage>
-      )}
-      <div className={s.btnGroup}>
-        <Button classTitle="login" onClick={handleSubmit(sendRegisterLS)}>
-          Signin
-        </Button>
-        <Button classTitle="login" onClick={handleClickRegisterButton}>
-          register
-        </Button>
-      </div>
-    </Form>
+      <Form title="Signin" handleFormSubmit={handleSubmit(sendRegisterLS)}>
+        <input
+          className={cn(s.input, s[useTheme('input')])}
+          {...emailRegister}
+          id="email"
+          type="email"
+          placeholder="email"
+        />
+        {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
+        {errorLogin?.email && <ErrorMessage>{errorLogin?.email}</ErrorMessage>}
+
+        <input
+          className={cn(s.input, s[useTheme('input')])}
+          {...passwordRegister}
+          type="password"
+          placeholder="password"
+        />
+
+        {errors?.password && (
+          <ErrorMessage>{errors?.password?.message}</ErrorMessage>
+        )}
+        {errorLogin?.password && (
+          <ErrorMessage>{errorLogin?.password}</ErrorMessage>
+        )}
+        <div className={s.btnGroup}>
+          <Button classTitle="login" onClick={handleSubmit(sendRegisterLS)}>
+            Signin
+          </Button>
+          <Button classTitle="login" onClick={handleClickRegisterButton}>
+            register
+          </Button>
+        </div>
+      </Form>
+    </>
   );
 };

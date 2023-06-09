@@ -5,15 +5,12 @@ import { useAppSelector } from '../../hooks/useAppSelector';
 import { addFavoriteMovie, removeFavoriteMovie } from '../../redux';
 import { Button } from '../../components';
 import { getDataFromLS } from '../../utils/functions';
+import { ShortMovieDataClient } from '../../types/types';
 
 import s from './index.module.css';
-type Fav = {
-  id: string;
-  title?: string;
-  image?: string;
-};
+
 type Props = {
-  movie: Fav;
+  movie: ShortMovieDataClient;
 };
 
 export function FavoriteButton({ movie }: Props) {
@@ -33,7 +30,13 @@ export function FavoriteButton({ movie }: Props) {
     if (isAuth) {
       dispatch(addFavoriteMovie(movie));
     } else {
-      navigate('/signin', { state: location.pathname });
+      navigate('/signin', {
+        state: {
+          path: location.pathname,
+          title:
+            'This option is only available to registered users. Please signin.',
+        },
+      });
     }
   };
   const removeFavorite = (e: React.MouseEvent) => {
@@ -58,7 +61,7 @@ export function FavoriteButton({ movie }: Props) {
         <Button
           classTitle="dislike"
           onClick={removeFavorite}
-          title="Delete fron favorites"
+          title="Delete from favorites"
         ></Button>
       )}
     </div>
