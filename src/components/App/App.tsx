@@ -2,8 +2,9 @@ import { Routes, Route } from 'react-router-dom';
 import { lazy } from 'react';
 
 import { ErrorBoundary, ErrorFallback, Layout } from '../../components';
-import { PrivateRoute } from '../../hoc/PrivateRoute';
+
 import { useTheme } from '../../hooks/useTheme';
+import { PrivateRoute } from '../PrivateRoute/PrivateRoute';
 
 const FavoritePage = lazy(() => import('../../pages/FavoritePage'));
 const HomePage = lazy(() => import('../../pages/HomePage'));
@@ -56,7 +57,10 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route
+            path="*"
+            element={<NotFoundPage text="This page does not exist. Go " />}
+          />
         </Route>
       </Routes>
     </div>

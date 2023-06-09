@@ -2,7 +2,7 @@ import { Button, CardList, Title } from '../components';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import { useAppSelector } from '../hooks/useAppSelector';
 import { clearFavoriteMovies } from '../redux';
-import { LSKey } from '../utils/functions';
+import { LSKey, removeDataFromLS } from '../utils/functions';
 
 import s from './index.module.css';
 
@@ -11,7 +11,7 @@ export default function FavoritePage() {
   const dispatch = useAppDispatch();
   const deleteFavorites = () => {
     dispatch(clearFavoriteMovies());
-    localStorage.removeItem(LSKey('fav'));
+    removeDataFromLS(LSKey('fav'));
   };
 
   if (favoriteMovies.length === 0)

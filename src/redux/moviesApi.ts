@@ -16,8 +16,6 @@ export const moviesApi = createApi({
           id: item.id,
           image: item.image,
           title: item.title,
-          rating: item.imDbRating,
-          year: item.year,
         })),
     }),
 

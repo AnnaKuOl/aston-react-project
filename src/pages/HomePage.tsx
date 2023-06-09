@@ -23,7 +23,7 @@ export default function HomePage() {
     setError('');
   }, [search]);
   if (isLoading) return <Spinner />;
-  if (isError) return <NotFoundPage />;
+  if (isError) return <NotFoundPage text="This page does not exist. Go " />;
   const handleSearch = (e: React.MouseEvent | React.FormEvent) => {
     e.preventDefault();
     if (search.trim().length) {

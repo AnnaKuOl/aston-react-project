@@ -27,3 +27,14 @@
   margin: 10px 0;
   width: 100%;
 }
+.link {
+  color: var(--grey2);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+.link:hover {
+  color: var(--accent-color);
+}

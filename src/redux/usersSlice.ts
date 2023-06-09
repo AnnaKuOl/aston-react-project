@@ -13,13 +13,13 @@ const usersSlice = createSlice({
         {
           login: action.payload.login,
           email: action.payload.email,
-          password: action.payload.password,
+          password: action.payload.password, 
         }
       );            
     },
     removeUser(state, action) {
       state.filter(user=> user.email !== action.payload.email);
-    } 
+    },
 
   }
 });

@@ -4,6 +4,7 @@ import cn from 'classnames';
 import { useGetMovieQuery } from '../../redux';
 import { FavoriteButton, Spinner, Title } from '../../components';
 import { useTheme } from '../../hooks/useTheme';
+import { ShortMovieDataClient } from '../../types/types';
 
 import NotFoundPage from '../NotFoundPage';
 
@@ -13,13 +14,19 @@ export default function SinglePage() {
   const { id = '' } = useParams();
   const { data: movie, isLoading, isError } = useGetMovieQuery(id);
 
+  const favoriteMovie: ShortMovieDataClient = {
+    id: id,
+    title: movie?.title,
+    image: movie?.image,
+  };
+
   return (
     <div>
-      {isError && <NotFoundPage />}
+      {isError && <NotFoundPage text="This page does not exist. Go " />}
       {isLoading && <Spinner />}
       <div className={s.wrapper}>
         <div className={s.img}>
-          <FavoriteButton id={id} movie={movie} />
+          <FavoriteButton movie={favoriteMovie} />
           <img src={movie?.image} alt={movie?.title} />
         </div>
         <div>

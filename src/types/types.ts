@@ -28,15 +28,15 @@ export interface FullMovieDataClient {
     directors: string;
     genres: string;
     id: string;
-    image: string;
+    image?: string;
     plot: string;
     time: string;
-    title: string;
+    title?: string;
     rating: string;
     year: string;
   }
   
-export type ShortMovieDataClient = Pick<FullMovieDataClient, 'id' | 'rating' | 'image' | 'title' | 'year'>;
+export type ShortMovieDataClient = Pick<FullMovieDataClient, 'id' | 'image' | 'title' >;
 
 export type Movie = ShortMovieDataClient | FavoriteMovies | MovieSearch;
 

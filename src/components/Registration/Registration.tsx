@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import cn from 'classnames';
 
@@ -12,10 +13,13 @@ import {
 import { Button, ErrorMessage, Form } from '..';
 import { User } from '../../types/types';
 import { useTheme } from '../../hooks/useTheme';
+import { getDataFromLS, setDataToLS } from '../../utils/functions';
 
 import s from './index.module.css';
 
 export const Registration = () => {
+  const [error, setError] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -24,16 +28,18 @@ export const Registration = () => {
   const navigate = useNavigate();
 
   const sendRegisterLS: SubmitHandler<User> = (data) => {
-    const users = localStorage.getItem('users');
+    const users: User[] = getDataFromLS('users', '""');
     if (users) {
-      const updateUsers: User[] = JSON.parse(users);
-      updateUsers.find((user) => user.email !== data.email)
-        ? localStorage.setItem('users', JSON.stringify([...updateUsers, data]))
-        : navigate('/signin');
+      if (users.some((user) => user.email === data.email)) {
+        setError(true);
+      } else {
+        setDataToLS('users', [...users, data]);
+        navigate('/signin');
+      }
     } else {
-      localStorage.setItem('users', JSON.stringify([data]));
+      setDataToLS('users', [data]);
+      navigate('/signin');
     }
-    navigate('/signin');
   };
   const handleClickLoginButton = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -84,9 +90,10 @@ export const Registration = () => {
         className={cn(s.input, s[useTheme('input')])}
         {...emailRegister}
         id="email"
-        type="text"
+        type="email"
         placeholder="email"
       />
+      {error && <ErrorMessage>This email is already registered.</ErrorMessage>}
       {errors?.email && <ErrorMessage>{errors?.email?.message}</ErrorMessage>}
 
       <input
@@ -101,10 +108,10 @@ export const Registration = () => {
       )}
       <div className={s.btnGroup}>
         <Button classTitle="login" onClick={handleSubmit(sendRegisterLS)}>
-          Зарегистрироваться
+          register
         </Button>
         <Button classTitle="login" onClick={handleClickLoginButton}>
-          Войти
+          Signin
         </Button>
       </div>
     </Form>
