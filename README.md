@@ -10,9 +10,9 @@
 
 - Функциональные компоненты c хуками в приоритете над классовыми.
 - Есть четкое разделение на умные и глупые компоненты. [Button](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/components/Button/Button.tsx) / [HomePage](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/pages/HomePage.tsx) , [SearchInput](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/components/SearchInput/SearchInput.tsx) / [SearchPage](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/pages/SearchPage.tsx)
-- Есть рендеринг списков: [CardList](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/components/CardList/CardList.tsx).
+- Есть рендеринг списков: [CardList](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/components/CardList/CardList.tsx), [HistoryPage] (https://github.com/AnnaKuOl/aston-react-project/blob/main/src/pages/HistoryPage.tsx).
 - Реализована хотя бы одна форма: [Registration](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/components/Registration/Registration.tsx), [Signin](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/components/Signin/Signin.tsx).
-- Есть применение Контекст API: [ThemeProvider](https://github.com/AnnaKuOl/aston-react-project/tree/main/src/components/ThemeProvider).
+- Есть применение Контекст API: [ThemeProvider](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/components/ThemeProvider/ThemeProvider.tsx).
 - Есть применение предохранителя: [App](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/components/App/App.tsx).
 - Есть хотя бы один кастомный хук: [useDebounce](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/hooks/useDebaunce.tsx), [useTheme](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/hooks/useTheme.ts).
 - Хотя бы несколько компонентов используют PropTypes: [CardList](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/components/CardList/CardList.tsx), [SearchResults](https://github.com/AnnaKuOl/aston-react-project/blob/main/src/components/SearchResults/SearchResults.tsx).
