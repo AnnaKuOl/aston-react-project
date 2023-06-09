@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LSKey } from '../utils/functions';
+import { LSKey, getDataFromLS } from '../utils/functions';
 
 type HistoryState={
   history: string[],
 }
 const initialState: HistoryState = {
-  history:  JSON.parse(localStorage.getItem(LSKey('hist')) ?? '[]') 
+  history: getDataFromLS(LSKey('hist'), '[]')
 };
 
 const historySlice = createSlice({

@@ -14,7 +14,6 @@ const usersSlice = createSlice({
           login: action.payload.login,
           email: action.payload.email,
           password: action.payload.password, 
-
         }
       );            
     },

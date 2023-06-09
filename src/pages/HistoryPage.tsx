@@ -4,7 +4,7 @@ import { useAppSelector } from '../hooks/useAppSelector';
 import { Button, Title } from '../components';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import { clearHistory } from '../redux/historySlice';
-import { LSKey } from '../utils/functions';
+import { LSKey, removeDataFromLS } from '../utils/functions';
 
 import s from './index.module.css';
 
@@ -13,7 +13,7 @@ export default function HistoryPage() {
   const dispatch = useAppDispatch();
   const deleteHistory = () => {
     dispatch(clearHistory());
-    localStorage.removeItem(LSKey('hist'));
+    removeDataFromLS(LSKey('hist'));
   };
   if (history.length === 0)
     return (

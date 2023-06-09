@@ -7,13 +7,12 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
   EMAIL_REGEXP,
-  LS_USERS_KEY,
   PASSWORD_REGEXP,
   VALIDATE_CONFIG,
 } from '../../utils/const';
 import { Button, ErrorMessage, Form } from '..';
 import { Errors, FavoriteMovies, User } from '../../types/types';
-import { LSKey } from '../../utils/functions';
+import { LSKey, getDataFromLS, setDataToLS } from '../../utils/functions';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useTheme } from '../../hooks/useTheme';
 import { addAllHistory } from '../../redux/historySlice';
@@ -34,20 +33,18 @@ export const Signin = () => {
   const dispatch = useAppDispatch();
 
   const sendRegisterLS: SubmitHandler<User> = (data) => {
-    const usersLS = localStorage.getItem(LS_USERS_KEY);
+    const users = getDataFromLS('users', '[]');
 
-    if (usersLS) {
-      const users = JSON.parse(usersLS || '');
+    if (users) {
       const user = users?.find((user: User) => user.email === data.email);
 
       if (user) {
         if (user.password === data.password) {
-          localStorage.setItem('isAuth', JSON.stringify(user.email));
-          const history: string[] = JSON.parse(
-            localStorage.getItem(LSKey('hist')) ?? '[]'
-          );
-          const favoriteMovies: FavoriteMovies[] = JSON.parse(
-            localStorage.getItem(LSKey('fav')) ?? '[]'
+          setDataToLS('isAuth', user.email);
+          const history: string[] = getDataFromLS(LSKey('hist'), '[]');
+          const favoriteMovies: FavoriteMovies[] = getDataFromLS(
+            LSKey('fav'),
+            '[]'
           );
           dispatch(addAllFavoriteMovies(favoriteMovies));
           dispatch(addAllHistory(history));

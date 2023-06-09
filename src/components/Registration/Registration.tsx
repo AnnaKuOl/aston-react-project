@@ -13,6 +13,7 @@ import {
 import { Button, ErrorMessage, Form } from '..';
 import { User } from '../../types/types';
 import { useTheme } from '../../hooks/useTheme';
+import { getDataFromLS, setDataToLS } from '../../utils/functions';
 
 import s from './index.module.css';
 
@@ -27,17 +28,16 @@ export const Registration = () => {
   const navigate = useNavigate();
 
   const sendRegisterLS: SubmitHandler<User> = (data) => {
-    const users = localStorage.getItem('users');
+    const users: User[] = getDataFromLS('users', '""');
     if (users) {
-      const updateUsers: User[] = JSON.parse(users);
-      if (updateUsers.find((user) => user.email !== data.email)) {
-        localStorage.setItem('users', JSON.stringify([...updateUsers, data]));
-        navigate('/signin');
-      } else {
+      if (users.some((user) => user.email === data.email)) {
         setError(true);
+      } else {
+        setDataToLS('users', [...users, data]);
+        navigate('/signin');
       }
     } else {
-      localStorage.setItem('users', JSON.stringify([data]));
+      setDataToLS('users', [data]);
       navigate('/signin');
     }
   };

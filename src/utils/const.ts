@@ -1,4 +1,4 @@
-export const API_KEY:string = 'k_9sn3qw2r';
+export const API_KEY:string = 'k_vx2f1tac';
 export const MOVIES_ON_HOMEPAGE = 8;
 export const EMAIL_REGEXP =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

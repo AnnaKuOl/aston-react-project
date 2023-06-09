@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { FavoriteMovies} from '../types/types';
-import { LSKey } from '../utils/functions';
+import { LSKey, getDataFromLS } from '../utils/functions';
 
 
 type FavoriteMoviesState = {
@@ -10,10 +10,8 @@ type FavoriteMoviesState = {
     error: string;
 }
 
-const movies = JSON.parse(localStorage.getItem(LSKey('fav')) ?? '[]') ;
-
 const initialState: FavoriteMoviesState ={
-  favoriteMovies: movies ,
+  favoriteMovies: getDataFromLS(LSKey('fav'), '[]'),
   isLoading: false,
   error: '',
 };

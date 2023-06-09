@@ -7,13 +7,14 @@ import { clearFavoriteMovies } from '../../redux';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { User } from '../../types/types';
 import { ThemeContext } from '../ThemeProvider/ThemeProvider';
+import { getDataFromLS, removeDataFromLS } from '../../utils/functions';
 
 import logo from './logo.png';
 import s from './index.module.css';
 
 export function Header() {
-  const isAuth = JSON.parse(localStorage.getItem('isAuth') ?? '""');
-  const users: User[] = JSON.parse(localStorage.getItem('users') ?? '[]');
+  const isAuth = getDataFromLS('isAuth', '""');
+  const users: User[] = getDataFromLS('users', '[]');
   const currentUser: User | undefined = users?.find(
     (user) => user.email === isAuth
   );
@@ -23,7 +24,7 @@ export function Header() {
 
   const logout = (e: React.MouseEvent) => {
     e.preventDefault();
-    localStorage.removeItem('isAuth');
+    removeDataFromLS('isAuth');
     dispatch(clearHistory());
     dispatch(clearFavoriteMovies());
     navigate('/');

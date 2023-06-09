@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { addFavoriteMovie, removeFavoriteMovie } from '../../redux';
 import { Button } from '../../components';
+import { getDataFromLS } from '../../utils/functions';
 
 import s from './index.module.css';
 type Fav = {
@@ -16,7 +17,7 @@ type Props = {
 };
 
 export function FavoriteButton({ movie }: Props) {
-  const isAuth = localStorage.getItem('isAuth') ?? '';
+  const isAuth = getDataFromLS('isAuth', '""');
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useAppDispatch();
