@@ -49,7 +49,7 @@ export const Signin = () => {
           );
           dispatch(addAllFavoriteMovies(favoriteMovies));
           dispatch(addAllHistory(history));
-          if (location.state.path) {
+          if (location?.state?.path) {
             navigate(location.state.path, { replace: true });
           } else {
             navigate('/', { replace: true });
